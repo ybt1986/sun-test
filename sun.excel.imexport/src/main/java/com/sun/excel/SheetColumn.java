@@ -7,5 +7,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target( { java.lang.annotation.ElementType.FIELD })
 public @interface SheetColumn {
-
+	String caption() default "";
+	String name() default "";
 }
