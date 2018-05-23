@@ -1,0 +1,2 @@
+com\sample\mybatis\MybatisTestApplication.class
+com\sample\mybatis\plugins\SqlCostInterceptor.class

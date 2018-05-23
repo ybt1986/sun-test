@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- UserMapperExt继承UserMapper
+	refid、resultMap需要添加前缀namespace
+ -->
+<mapper namespace="com.sample.mybatis.mapper.UserMapperExt">
+	<select id="findAllUser" resultMap="com.sample.mybatis.mapper.UserMapper.BaseResultMap" parameterType="map">
+	    select 
+	    <include refid="com.sample.mybatis.mapper.UserMapper.Base_Column_List" />
+	    from t_user
+	    <where>
+	    	<if test="userName != null and userName != ''">
+	    		and user_name like CONCAT('%', #{userName}, '%')  
+	    	</if>
+	    </where>
+	   	<if test="sortField != null and sortField != ''">
+	   		order by ${sortField} ${order}
+	   	</if>
+	</select>
+</mapper>

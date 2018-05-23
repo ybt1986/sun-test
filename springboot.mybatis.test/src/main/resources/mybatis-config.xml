@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="defaultStatementTimeout" value="25000" />
+		<setting name="logPrefix" value="sample.mybatis." />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- <setting name="logImpl" value="LOG4J2" /> -->
+	</settings>
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+		<plugin interceptor="com.sample.mybatis.plugins.SqlCostInterceptor"></plugin>
+	</plugins>
+</configuration>
+
+ 
+ 
