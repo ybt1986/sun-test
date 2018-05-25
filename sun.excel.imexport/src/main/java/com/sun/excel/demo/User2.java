@@ -12,8 +12,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @SheetTable(name = "用户列表")
-public class User implements Excelable {
-	@SheetColumn(code = "userId", caption = "用户ID")
+public class User2 implements Excelable {
+	@SheetColumn(caption = "用户id")
 	private int id;
 
 	@SheetColumn(caption = "姓名")
@@ -22,15 +22,12 @@ public class User implements Excelable {
 	@SheetColumn(caption = "性别")
 	private Sex sex;
 
-	@SheetColumn(code = "birthday", caption = "出生年月")
+	@SheetColumn(caption = "出生年月")
 	private String birthday;
 
-	@SheetColumn(code = "idcard", caption = "身份证号")
+	@SheetColumn(caption = "身份证号")
 	private String idcard;
 
-	@SheetColumn(code = "nation", caption = "祖籍")
+	@SheetColumn(caption = "国籍")
 	private String nation;
-
-	@SheetColumn(code = "address", caption = "家庭住址")
-	private Address address;
 }

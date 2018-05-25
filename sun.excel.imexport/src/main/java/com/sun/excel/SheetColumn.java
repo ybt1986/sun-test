@@ -8,5 +8,8 @@ import java.lang.annotation.Target;
 @Target( { java.lang.annotation.ElementType.FIELD })
 public @interface SheetColumn {
 	String caption() default "";
-	String name() default "";
+	String code() default "";
+	String index() default "A";
+	SheetColumnDataType datatype() default SheetColumnDataType.STRING;
+	String format() default "";
 }
