@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Sheet;
 
-public interface SheetDataReader {
+public interface SheetBodyReader {
 	List<Map<Integer, String>> read(Sheet sheet);
 
 	void startRowIndex(int startRowIndex);

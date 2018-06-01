@@ -5,12 +5,12 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
@@ -27,13 +27,12 @@ public class ExcelUtil {
 	 * @return
 	 */
 	public static String getCellValue(Cell cell) {
+		CellType cellType = cell.getCellTypeEnum();
 		String cellValue = "";
 		if (cell != null) {
-			switch (cell.getCellType()) {
-			case HSSFCell.CELL_TYPE_STRING:
+			if (cellType == CellType.STRING) {
 				cellValue = cell.getRichStringCellValue().getString().trim();
-				break;
-			case HSSFCell.CELL_TYPE_NUMERIC:
+			} else if (cellType == CellType.NUMERIC) {
 				if (HSSFDateUtil.isCellDateFormatted(cell)) { // 判断是否为日期类型
 					Date date = cell.getDateCellValue();
 					DateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -42,15 +41,12 @@ public class ExcelUtil {
 					DecimalFormat df = new DecimalFormat("#");
 					cellValue = df.format(cell.getNumericCellValue()).toString();
 				}
-				break;
-			case HSSFCell.CELL_TYPE_BOOLEAN:
+			} else if (cellType == CellType.BOOLEAN) {
 				cellValue = String.valueOf(cell.getBooleanCellValue()).trim();
-				break;
-			case HSSFCell.CELL_TYPE_FORMULA:
+			} else if (cellType == CellType.FORMULA) {
 				cellValue = cell.getCellFormula();
-				break;
-			default:
-				cellValue = "";
+			} else {
+				cellValue = cell.getStringCellValue();
 			}
 		}
 		return cellValue;

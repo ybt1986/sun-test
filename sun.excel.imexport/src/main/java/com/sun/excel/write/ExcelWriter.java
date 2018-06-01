@@ -15,6 +15,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.google.common.base.Preconditions;
 import com.sun.excel.ExcelType;
+import com.sun.excel.write.body.DefaultSheetBodyWriter;
+import com.sun.excel.write.body.SheetBodyWriter;
 import com.sun.excel.write.header.DefaultSheetHeaderWriter;
 import com.sun.excel.write.header.SheetHeaderWriter;
 
@@ -29,15 +31,32 @@ public class ExcelWriter implements Closeable {
 		}
 	}
 
-	public <T> void write(List<T> data, Class<T> clazz, String sheetName, SheetHeaderWriter headerWriter) {
+	public <T> void write(List<T> datas, Class<T> clazz, String sheetName, SheetHeaderWriter headerWriter) {
+		this.write(datas, clazz, sheetName, headerWriter, null);
+	}
+
+	public <T> void write(List<T> datas, Class<T> clazz, String sheetName) {
+		this.write(datas, clazz, sheetName, null, null);
+	}
+
+	public <T> void write(List<T> datas, Class<T> clazz, String sheetName, SheetHeaderWriter headerWriter, SheetBodyWriter bodyWriter) {
 		Preconditions.checkArgument(StringUtils.isNotBlank(sheetName), "sheetName isn't empty");
 
 		if (headerWriter == null) {
 			headerWriter = new DefaultSheetHeaderWriter();
 		}
 
+		if (bodyWriter == null) {
+			bodyWriter = new DefaultSheetBodyWriter();
+		}
+
+		bodyWriter.setHeaderWriter(headerWriter);
+
 		Sheet sheet = workbook.createSheet(sheetName);
 		headerWriter.write(sheet, clazz);
+
+		bodyWriter.startRowIndex(headerWriter.startRowIndex() + headerWriter.rowNum());
+		bodyWriter.write(sheet, datas, clazz);
 	}
 
 	public void exportToFile(File file) throws IOException {

@@ -8,15 +8,18 @@ import org.apache.poi.ss.usermodel.Sheet;
 
 import com.google.common.collect.Lists;
 
-public class DefaultSheetDataReader implements SheetDataReader {
+public class DefaultSheetBodyReader implements SheetBodyReader {
 	private DataRowReader dataRowReader;
 	private int startRowIndex;
 
-	public DefaultSheetDataReader() {
+	public DefaultSheetBodyReader() {
 		this.dataRowReader = new DefaultDataRowReader();
 	}
 
-	public DefaultSheetDataReader(DataRowReader dataRowReader) {
+	public DefaultSheetBodyReader(DataRowReader dataRowReader) {
+		if (dataRowReader == null) {
+			dataRowReader = new DefaultDataRowReader();
+		}
 		this.dataRowReader = dataRowReader;
 	}
 

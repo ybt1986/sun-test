@@ -9,6 +9,7 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
+import com.google.common.base.Charsets;
 import com.sun.excel.ColumnField;
 import com.sun.excel.SheetColumn;
 import com.sun.excel.utils.ClassFieldUtil;
@@ -19,15 +20,10 @@ public class SheetHeaderWithCodeWriter implements SheetHeaderWriter {
 
 	@Override
 	public <T> void write(Sheet sheet, Class<T> clazz) {
-		CellStyle style = sheet.getWorkbook().createCellStyle();
-		style.setAlignment(HorizontalAlignment.CENTER);
+		CellStyle cellStyle = this.createRowCellStyle(sheet);
 
-		sheet.setDefaultColumnWidth(20);
-
-		CellStyle cellStyle = ExcelUtil.getHeaderStyle(sheet.getWorkbook(), sheet);
-
-		Row row1 = sheet.createRow(startRow());
-		Row row2 = sheet.createRow(startRow() + 1);
+		Row row1 = sheet.createRow(startRowIndex());
+		Row row2 = sheet.createRow(startRowIndex() + 1);
 
 		List<ColumnField> columnFields = ClassFieldUtil.getColumnFields(clazz, SheetColumn.class);
 		Iterables.forEach(columnFields, (index, columnField) -> {
@@ -36,8 +32,10 @@ public class SheetHeaderWithCodeWriter implements SheetHeaderWriter {
 
 			Cell cell1 = row1.createCell(index);
 			Cell cell2 = row2.createCell(index);
-			cell1.setCellStyle(cellStyle);
-			cell2.setCellStyle(cellStyle);
+			if (cellStyle != null) {
+				cell1.setCellStyle(cellStyle);
+				cell2.setCellStyle(cellStyle);
+			}
 			if (StringUtils.isNotBlank(caption) && StringUtils.isNotBlank(code)) {
 				cell1.setCellValue(caption);
 				cell2.setCellValue(code);
@@ -51,10 +49,28 @@ public class SheetHeaderWithCodeWriter implements SheetHeaderWriter {
 				throw new IllegalArgumentException("caption and code can't empty");
 			}
 		});
+
+		// 设置列宽
+		for (int i = 0, len = row1.getPhysicalNumberOfCells(); i < len; i++) {
+			Cell cell1 = row1.getCell(i);
+			Cell cell2 = row2.getCell(i);
+			int length1 = cell1.toString().getBytes(Charsets.UTF_8).length;
+			int length2 = cell2.toString().getBytes(Charsets.UTF_8).length;
+
+			sheet.setColumnWidth(i, Math.max(length1, length2) * 512);
+		}
 	}
 
 	@Override
-	public int startRow() {
+	public CellStyle createRowCellStyle(Sheet sheet) {
+		CellStyle cellStyle = ExcelUtil.getHeaderStyle(sheet.getWorkbook(), sheet);
+		cellStyle.setAlignment(HorizontalAlignment.CENTER);
+		sheet.setDefaultColumnWidth(20);
+		return cellStyle;
+	}
+
+	@Override
+	public int startRowIndex() {
 		return 0;
 	}
 

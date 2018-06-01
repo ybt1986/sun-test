@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.sun.excel.read.ExcelReader;
 import com.sun.excel.read.SheetData;
-import com.sun.excel.read.body.DefaultSheetDataReader;
+import com.sun.excel.read.body.DefaultSheetBodyReader;
 import com.sun.excel.read.header.DefaultSheetHeaderReader;
 
 public class ExcelReaderTest {
@@ -26,7 +26,7 @@ public class ExcelReaderTest {
 	public void read02() {
 		File file = new File("C:\\Users\\sunchangtan\\Desktop\\用户列表.xlsx");
 		try (ExcelReader exporter = new ExcelReader(file)) {
-			SheetData sheetData = exporter.export("sheet2", new DefaultSheetHeaderReader(), new DefaultSheetDataReader());
+			SheetData sheetData = exporter.export("sheet2", new DefaultSheetHeaderReader(), new DefaultSheetBodyReader());
 			System.out.println(sheetData);
 		} catch (IOException e) {
 			e.printStackTrace();

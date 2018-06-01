@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@SheetTable(name = "用户列表")
+@SheetTable(caption = "用户列表")
 public class User2 implements Excelable {
 	@SheetColumn(caption = "用户id")
 	private int id;

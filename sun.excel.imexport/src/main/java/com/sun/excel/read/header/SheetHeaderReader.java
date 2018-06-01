@@ -7,7 +7,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 public interface SheetHeaderReader {
 	Map<Integer, SheetColumnHeader> read(Sheet sheet);
 
-	int startRow();
+	int startRowIndex();
 
 	int rowNum();
 }

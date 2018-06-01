@@ -11,8 +11,10 @@ import lombok.ToString;
 @ToString
 public class ColumnField {
 	private String columnCaption;
-	private String columnIndex;
+	private int columnIndex;
 	private String columnCode;
+	private String columnFormat;
+	private boolean enableMulcol;
 	private String fieldName;
 	private Class<?> fieldType;
 	private Field field;

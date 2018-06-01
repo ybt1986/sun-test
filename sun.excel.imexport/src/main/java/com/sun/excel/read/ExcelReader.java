@@ -15,11 +15,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.sun.excel.ExcelType;
-import com.sun.excel.read.body.DefaultSheetDataReader;
-import com.sun.excel.read.body.SheetDataReader;
+import com.sun.excel.read.body.DefaultSheetBodyReader;
+import com.sun.excel.read.body.SheetBodyReader;
+import com.sun.excel.read.header.SheetColumnHeader;
 import com.sun.excel.read.header.SheetHeaderReader;
 import com.sun.excel.read.header.SheetHeaderWithCodeReader;
-import com.sun.excel.read.header.SheetColumnHeader;
 
 public class ExcelReader implements Closeable {
 	private Workbook workbook;
@@ -51,7 +51,7 @@ public class ExcelReader implements Closeable {
 		return this.export(sheetName, headerParser, null);
 	}
 
-	public SheetData export(String sheetName, SheetHeaderReader headerParser, SheetDataReader sheetDataReader) {
+	public SheetData export(String sheetName, SheetHeaderReader headerReader, SheetBodyReader sheetDataReader) {
 		Sheet sheet = null;
 		if (!sheetName.trim().equals("")) {
 			// 如果指定sheet名,则取指定sheet中的内容.
@@ -62,17 +62,17 @@ public class ExcelReader implements Closeable {
 			sheet = workbook.getSheetAt(0);
 		}
 
-		if (headerParser == null) {
-			headerParser = new SheetHeaderWithCodeReader();
+		if (headerReader == null) {
+			headerReader = new SheetHeaderWithCodeReader();
 		}
 
 		if (sheetDataReader == null) {
-			sheetDataReader = new DefaultSheetDataReader();
+			sheetDataReader = new DefaultSheetBodyReader();
 		}
 
-		Map<Integer, SheetColumnHeader> sheetHeader = headerParser.read(sheet);
+		Map<Integer, SheetColumnHeader> sheetHeader = headerReader.read(sheet);
 
-		sheetDataReader.startRowIndex(headerParser.rowNum());
+		sheetDataReader.startRowIndex(headerReader.startRowIndex() + headerReader.rowNum());
 		List<Map<Integer, String>> sheetData = sheetDataReader.read(sheet);
 
 		return new SheetData(sheetHeader, sheetData);

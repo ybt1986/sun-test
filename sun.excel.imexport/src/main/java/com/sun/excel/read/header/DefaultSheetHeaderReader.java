@@ -33,7 +33,7 @@ public class DefaultSheetHeaderReader implements SheetHeaderReader {
 	}
 
 	@Override
-	public int startRow() {
+	public int startRowIndex() {
 		return 0;
 	}
 

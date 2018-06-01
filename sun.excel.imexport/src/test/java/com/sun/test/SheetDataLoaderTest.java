@@ -4,19 +4,32 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import com.sun.excel.common.CellTypeFormatRegistrar;
+import com.sun.excel.common.CellTypeFormatRegistrar.CellFieldValueFormatAdapter;
 import com.sun.excel.demo.Sex;
 import com.sun.excel.demo.User;
 import com.sun.excel.demo.User2;
 import com.sun.excel.read.BeanDataLoader;
-import com.sun.excel.read.BeanDataLoader.FieldDataFormatter;
 import com.sun.excel.read.ExcelReader;
 import com.sun.excel.read.SheetData;
 import com.sun.excel.read.header.DefaultSheetHeaderReader;
 import com.sun.excel.read.header.SheetHeaderWithCodeReader;
 
 public class SheetDataLoaderTest {
+	@Before
+	public void init() {
+		CellTypeFormatRegistrar.registerCellFieldvalueFormat("sex", new CellFieldValueFormatAdapter<Sex>() {
+			@Override
+			public Sex read(String data) {
+				return Sex.parse(data);
+			}
+
+		});
+	}
+
 	@Test
 	public void test01() {
 		File file = new File("C:\\Users\\sunchangtan\\Desktop\\用户列表.xlsx");
@@ -27,13 +40,6 @@ public class SheetDataLoaderTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		BeanDataLoader.registerFieldDataFormatter(Sex.class, new FieldDataFormatter<Sex>() {
-			@Override
-			public Sex format(String value) {
-				return Sex.parse(value);
-			}
-		});
 		List<User> users = BeanDataLoader.loadFromSheetData(sheetData, User.class);
 		System.out.println(users);
 	}
@@ -49,12 +55,6 @@ public class SheetDataLoaderTest {
 			e.printStackTrace();
 		}
 
-		BeanDataLoader.registerFieldDataFormatter(Sex.class, new FieldDataFormatter<Sex>() {
-			@Override
-			public Sex format(String value) {
-				return Sex.parse(value);
-			}
-		});
 		List<User> users = BeanDataLoader.loadFromSheetData(sheetData, User.class);
 		System.out.println(users);
 	}
@@ -72,12 +72,6 @@ public class SheetDataLoaderTest {
 			e.printStackTrace();
 		}
 
-		BeanDataLoader.registerFieldDataFormatter(Sex.class, new FieldDataFormatter<Sex>() {
-			@Override
-			public Sex format(String value) {
-				return Sex.parse(value);
-			}
-		});
 		List<User> users1 = BeanDataLoader.loadFromSheetData(sheetData1, User.class);
 		System.out.println(users1);
 

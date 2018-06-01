@@ -5,11 +5,40 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target( { java.lang.annotation.ElementType.FIELD })
+@Target({ java.lang.annotation.ElementType.FIELD })
 public @interface SheetColumn {
+	/**
+	 * 列标题
+	 * 
+	 * @return
+	 */
 	String caption() default "";
+
+	/**
+	 * 列编码
+	 * 
+	 * @return
+	 */
 	String code() default "";
-	String index() default "A";
-	SheetColumnDataType datatype() default SheetColumnDataType.STRING;
-	String format() default "";
+
+	/**
+	 * 列索引
+	 * 
+	 * @return
+	 */
+	int index() default -1;
+
+	/**
+	 * 导入Excel时，数据格式化
+	 * 
+	 * @return
+	 */
+	String format() default "string";
+
+	/**
+	 * 是否需要多列显示
+	 * 
+	 * @return
+	 */
+	boolean mulcol() default false;
 }

@@ -5,9 +5,11 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sun.excel.ColumnField;
@@ -54,6 +56,7 @@ public class ClassFieldUtil {
 					}
 
 					columnField.setColumnIndex(sheetColumn.index());
+					columnField.setColumnFormat(sheetColumn.format());
 					columnField.setFieldType(field.getType());
 					columnField.setFieldName(field.getName());
 					columnField.setField(field);
@@ -68,6 +71,46 @@ public class ClassFieldUtil {
 		}
 
 		return fieldList;
+	}
+
+	public static <T> Object getFieldValue(T data, String code, Class<T> clazz) {
+		Preconditions.checkNotNull(data != null);
+
+		List<ColumnField> columnFields = ClassFieldUtil.getColumnFields(clazz, SheetColumn.class);
+		ColumnField columnField = ClassFieldUtil.getColumnFieldByCode(code, columnFields);
+		if (columnField != null) {
+			Field field = columnField.getField();
+			return ClassFieldUtil.getFieldValue(field, data);
+		}
+
+		return null;
+	}
+
+	public static ColumnField getColumnFieldByCode(String code, List<ColumnField> fields) {
+		Optional<ColumnField> columnField = fields.stream().filter(field -> field.getColumnCode().equals(code)).findFirst();
+
+		if (!columnField.isPresent()) {
+			columnField = fields.stream().filter(field -> field.getColumnCaption().equals(code)).findFirst();
+		}
+		// if (!columnField.isPresent()) {
+		// throw new IllegalArgumentException("columnField correspond with [" + code +
+		// "] can't found");
+		// }
+
+		return columnField.orElse(null);
+	}
+
+	public static Object getFieldValue(Field field, Object object) {
+		try {
+			field.setAccessible(true);
+			return field.get(object);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }
