@@ -1,6 +1,5 @@
 package com.sun.excel.utils;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
@@ -12,42 +11,42 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.sun.excel.ColumnField;
 import com.sun.excel.SheetColumn;
+import com.sun.excel.SheetColumnFieldCfg;
+import com.sun.excel.SheetTable;
+import com.sun.excel.SheetTableCfg;
 
-public class ClassFieldUtil {
-	private static final Map<Class<?>, List<ColumnField>> class_fields_map = Maps.newConcurrentMap();
+public class ReflectUtils {
+	private static final Map<Class<?>, SheetTableCfg> sheetTableCfg_cache = Maps.newConcurrentMap();
+	private static final Map<Class<?>, List<SheetColumnFieldCfg>> sheetColumnFieldCfg_cache = Maps.newConcurrentMap();
 
-	private static final Map<Class<?>, List<Field>> class_fields_cache = Maps.newConcurrentMap();
+	public static <T> SheetTableCfg getTableCfg(Class<T> clazz) {
+		SheetTableCfg tableCfg = sheetTableCfg_cache.get(clazz);
+		if (tableCfg == null) {
+			SheetTable sheetTable = clazz.getAnnotation(SheetTable.class);
+			if (sheetTable != null) {
+				SheetTableCfg sheetTableCfg = new SheetTableCfg();
+				sheetTableCfg.setCaption(sheetTable.caption());
+				sheetTableCfg.setColumnIndexStrategy(sheetTable.indexStrategy());
 
-	public static <T> List<Field> getFields(Class<T> clazz, Class<? extends Annotation> annotianClass) {
-		List<Field> fieldList = class_fields_cache.get(clazz);
-		if (fieldList == null) {
-			List<Field> fields_cache = Lists.newArrayList();
+				sheetTableCfg_cache.put(clazz, sheetTableCfg);
 
-			Field[] fields = clazz.getDeclaredFields();
-			Arrays.asList(fields).stream().filter(field -> field.getAnnotation(annotianClass) != null).forEach(field -> {
-				fields_cache.add(field);
-			});
-
-			class_fields_cache.put(clazz, fields_cache);
-
-			return fields_cache;
+				return sheetTableCfg;
+			}
 		}
-
-		return fieldList;
+		return tableCfg;
 	}
 
-	public static <T> List<ColumnField> getColumnFields(Class<T> clazz, Class<? extends Annotation> annotianClass) {
-		List<ColumnField> fieldList = class_fields_map.get(clazz);
+	public static <T> List<SheetColumnFieldCfg> getColumnFieldCfgs(Class<T> clazz) {
+		List<SheetColumnFieldCfg> fieldList = sheetColumnFieldCfg_cache.get(clazz);
 		if (fieldList == null) {
-			List<ColumnField> fields_cache = Lists.newArrayList();
+			List<SheetColumnFieldCfg> fields_cache = Lists.newArrayList();
 
 			Field[] fields = clazz.getDeclaredFields();
 			Arrays.asList(fields).stream().forEach(field -> {
 				SheetColumn sheetColumn = field.getAnnotation(SheetColumn.class);
 				if (sheetColumn != null) {
-					ColumnField columnField = new ColumnField();
+					SheetColumnFieldCfg columnField = new SheetColumnFieldCfg();
 					columnField.setColumnCaption(sheetColumn.caption());
 					if (StringUtils.isNotBlank(sheetColumn.code())) {
 						columnField.setColumnCode(sheetColumn.code());
@@ -65,7 +64,7 @@ public class ClassFieldUtil {
 				}
 			});
 
-			class_fields_map.put(clazz, fields_cache);
+			sheetColumnFieldCfg_cache.put(clazz, fields_cache);
 
 			return fields_cache;
 		}
@@ -76,24 +75,25 @@ public class ClassFieldUtil {
 	public static <T> Object getFieldValue(T data, String code, Class<T> clazz) {
 		Preconditions.checkNotNull(data != null);
 
-		List<ColumnField> columnFields = ClassFieldUtil.getColumnFields(clazz, SheetColumn.class);
-		ColumnField columnField = ClassFieldUtil.getColumnFieldByCode(code, columnFields);
-		if (columnField != null) {
-			Field field = columnField.getField();
-			return ClassFieldUtil.getFieldValue(field, data);
+		List<SheetColumnFieldCfg> columnFieldCfgs = ReflectUtils.getColumnFieldCfgs(clazz);
+		SheetColumnFieldCfg columnFieldCfg = ReflectUtils.getColumnFieldByCode(code, columnFieldCfgs);
+		if (columnFieldCfg != null) {
+			Field field = columnFieldCfg.getField();
+			return ReflectUtils.getFieldValue(field, data);
 		}
 
 		return null;
 	}
 
-	public static ColumnField getColumnFieldByCode(String code, List<ColumnField> fields) {
-		Optional<ColumnField> columnField = fields.stream().filter(field -> field.getColumnCode().equals(code)).findFirst();
+	public static SheetColumnFieldCfg getColumnFieldByCode(String code, List<SheetColumnFieldCfg> fields) {
+		Optional<SheetColumnFieldCfg> columnField = fields.stream().filter(field -> field.getColumnCode().equals(code)).findFirst();
 
 		if (!columnField.isPresent()) {
 			columnField = fields.stream().filter(field -> field.getColumnCaption().equals(code)).findFirst();
 		}
 		// if (!columnField.isPresent()) {
-		// throw new IllegalArgumentException("columnField correspond with [" + code +
+		// throw new IllegalArgumentException("columnField correspond with [" +
+		// code +
 		// "] can't found");
 		// }
 

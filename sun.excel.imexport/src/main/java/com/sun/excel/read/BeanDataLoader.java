@@ -7,12 +7,11 @@ import java.util.Map.Entry;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.sun.excel.ColumnField;
-import com.sun.excel.SheetColumn;
+import com.sun.excel.SheetColumnFieldCfg;
 import com.sun.excel.common.CellTypeFormatRegistrar;
 import com.sun.excel.common.CellTypeFormatRegistrar.CellFieldValueFormat;
 import com.sun.excel.read.header.SheetColumnHeader;
-import com.sun.excel.utils.ClassFieldUtil;
+import com.sun.excel.utils.ReflectUtils;
 
 /**
  * 对象Bean集合数据加载器
@@ -30,7 +29,7 @@ public class BeanDataLoader {
 	 * @return 返回对象列表
 	 */
 	public static <T> List<T> loadFromSheetData(SheetData sheetData, Class<T> clazz) {
-		List<ColumnField> columnFields = ClassFieldUtil.getColumnFields(clazz, SheetColumn.class);
+		List<SheetColumnFieldCfg> columnFieldCfgs = ReflectUtils.getColumnFieldCfgs(clazz);
 
 		List<Map<String, String>> datas = transform(sheetData.getSheetHeader(), sheetData.getSheetData());
 
@@ -43,10 +42,10 @@ public class BeanDataLoader {
 				String code = cellData.getKey();
 				String value = cellData.getValue();
 
-				ColumnField columnField = ClassFieldUtil.getColumnFieldByCode(code, columnFields);
-				if (columnField != null) {
+				SheetColumnFieldCfg columnFieldCfg = ReflectUtils.getColumnFieldByCode(code, columnFieldCfgs);
+				if (columnFieldCfg != null) {
 					try {
-						setFieldValue(columnField, entity, value);
+						setFieldValue(columnFieldCfg, entity, value);
 					} catch (Exception e) {
 						System.out.println(e);
 					}
@@ -75,10 +74,11 @@ public class BeanDataLoader {
 		return dataTransformed;
 	}
 
-	private static void setFieldValue(ColumnField columnField, Object entity, String value) throws Exception {
+	private static void setFieldValue(SheetColumnFieldCfg columnField, Object entity, String value) throws Exception {
 		Field field = columnField.getField();
 		Class<?> fieldType = field.getType();
 		field.setAccessible(true);
+
 		CellFieldValueFormat<?> formatter = CellTypeFormatRegistrar.getCellFieldValueFormat(columnField.getColumnFormat());
 		if (formatter == null) {
 			throw new IllegalArgumentException("formatter of type[" + fieldType.getName() + "]  can't found");

@@ -10,13 +10,15 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import com.google.common.base.Charsets;
-import com.sun.excel.ColumnField;
-import com.sun.excel.SheetColumn;
-import com.sun.excel.utils.ClassFieldUtil;
+import com.sun.excel.SheetColumnFieldCfg;
+import com.sun.excel.SheetTableCfg;
+import com.sun.excel.common.SheetColumnIndexStrategyRegistrar;
+import com.sun.excel.common.SheetColumnIndexStrategyRegistrar.SheetColumnIndexStrategy;
 import com.sun.excel.utils.ExcelUtil;
 import com.sun.excel.utils.Iterables;
+import com.sun.excel.utils.ReflectUtils;
 
-public class SheetHeaderWithCodeWriter implements SheetHeaderWriter {
+public class SheetHeaderWithCodeWriter extends BaseSheetHeaderWriter {
 
 	@Override
 	public <T> void write(Sheet sheet, Class<T> clazz) {
@@ -25,13 +27,25 @@ public class SheetHeaderWithCodeWriter implements SheetHeaderWriter {
 		Row row1 = sheet.createRow(startRowIndex());
 		Row row2 = sheet.createRow(startRowIndex() + 1);
 
-		List<ColumnField> columnFields = ClassFieldUtil.getColumnFields(clazz, SheetColumn.class);
-		Iterables.forEach(columnFields, (index, columnField) -> {
-			String caption = columnField.getColumnCaption();
-			String code = columnField.getColumnCode();
+		SheetTableCfg tableCfg = ReflectUtils.getTableCfg(clazz);
+		SheetColumnIndexStrategy columnIndexStrategy = SheetColumnIndexStrategyRegistrar.newSheetColumnIndexStrategy(tableCfg.getColumnIndexStrategy());
 
-			Cell cell1 = row1.createCell(index);
-			Cell cell2 = row2.createCell(index);
+		List<SheetColumnFieldCfg> columnFieldCfgs = ReflectUtils.getColumnFieldCfgs(clazz);
+		int columnCount = columnFieldCfgs.size();
+		Iterables.forEach(columnFieldCfgs, (index, columnFieldCfg) -> {
+			String caption = columnFieldCfg.getColumnCaption();
+			String code = columnFieldCfg.getColumnCode();
+
+			int realIndex = columnIndexStrategy.findColumnIndex(columnFieldCfg, index, columnCount);
+			Cell cell1 = row1.getCell(realIndex);
+			if (cell1 == null) {
+				cell1 = row1.createCell(realIndex);
+			}
+			Cell cell2 = row2.getCell(realIndex);
+			if (cell2 == null) {
+				cell2 = row2.createCell(realIndex);
+			}
+
 			if (cellStyle != null) {
 				cell1.setCellStyle(cellStyle);
 				cell2.setCellStyle(cellStyle);

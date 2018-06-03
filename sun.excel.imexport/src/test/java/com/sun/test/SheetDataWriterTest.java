@@ -87,7 +87,7 @@ public class SheetDataWriterTest {
 
 	@Test
 	public void test01() {
-		String fileName = "C:\\Users\\sunchangtan\\Desktop\\用户列表_写入01.xlsx";
+		String fileName = "D:\\tmp\\用户列表_写入01.xlsx";
 		try (ExcelWriter writer = new ExcelWriter(ExcelType.XLSX);) {
 			writer.write(users, User.class, "用户列表01");
 			writer.exportToFile(new File(fileName));
@@ -98,7 +98,7 @@ public class SheetDataWriterTest {
 
 	@Test
 	public void test02() {
-		String fileName = "C:\\Users\\sunchangtan\\Desktop\\用户列表_写入02.xlsx";
+		String fileName = "D:\\tmp\\用户列表_写入02.xlsx";
 		try (ExcelWriter writer = new ExcelWriter(ExcelType.XLSX);) {
 			writer.write(users, User.class, "用户列表01", new SheetHeaderWithCodeWriter());
 			writer.exportToFile(new File(fileName));

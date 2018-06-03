@@ -20,6 +20,25 @@ import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 
 public class ExcelUtil {
+	// private static Class<? extends SheetColumnIndexStrategy>
+	// columnIndexStrategyClass = SequenceSheetColumnIndexStrategy.class;
+	//
+	// public static void setSheetColumnIndexStrategyClass(Class<? extends
+	// SheetColumnIndexStrategy> clazz) {
+	// columnIndexStrategyClass = clazz;
+	// }
+	//
+	// public static SheetColumnIndexStrategy newSheetColumnIndexStrategy() {
+	// try {
+	// return columnIndexStrategyClass.newInstance();
+	// } catch (InstantiationException e) {
+	// e.printStackTrace();
+	// } catch (IllegalAccessException e) {
+	// e.printStackTrace();
+	// }
+	// return new SequenceSheetColumnIndexStrategy();
+	// }
+
 	/**
 	 * 类型
 	 * 

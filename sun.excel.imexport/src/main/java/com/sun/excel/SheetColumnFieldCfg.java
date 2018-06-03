@@ -9,10 +9,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ColumnField {
+public class SheetColumnFieldCfg {
 	private String columnCaption;
-	private int columnIndex;
+	private int columnIndex = Integer.MIN_VALUE;
 	private String columnCode;
+	private String dataSource;
 	private String columnFormat;
 	private boolean enableMulcol;
 	private String fieldName;

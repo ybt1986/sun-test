@@ -21,6 +21,7 @@ import com.sun.excel.write.header.DefaultSheetHeaderWriter;
 import com.sun.excel.write.header.SheetHeaderWriter;
 
 public class ExcelWriter implements Closeable {
+
 	private Workbook workbook;
 
 	public ExcelWriter(ExcelType excelType) {
@@ -71,4 +72,5 @@ public class ExcelWriter implements Closeable {
 			workbook.close();
 		}
 	}
+
 }

@@ -13,6 +13,12 @@ public interface SheetBodyWriter {
 	void startRowIndex(int startRowIndex);
 
 	CellStyle createRowCellStyle(Sheet sheet);
+	
+	SheetHeaderWriter getHeaderWriter();
 
 	void setHeaderWriter(SheetHeaderWriter headerWriter);
+	
+	DataRowWriter getDataRowWriter();
+
+	void setDataRowWriter(DataRowWriter dataRowWriter);
 }

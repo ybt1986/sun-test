@@ -12,7 +12,7 @@ public @interface SheetColumn {
 	 * 
 	 * @return
 	 */
-	String caption() default "";
+	String caption();
 
 	/**
 	 * 列编码
@@ -26,7 +26,7 @@ public @interface SheetColumn {
 	 * 
 	 * @return
 	 */
-	int index() default -1;
+	int index() default Integer.MIN_VALUE;
 
 	/**
 	 * 导入Excel时，数据格式化
@@ -34,6 +34,11 @@ public @interface SheetColumn {
 	 * @return
 	 */
 	String format() default "string";
+
+	/**
+	 * 数据源
+	 */
+	String dataSource() default "";
 
 	/**
 	 * 是否需要多列显示
