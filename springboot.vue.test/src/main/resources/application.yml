@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  freemarker:
+    allow-request-override: false
+    cache: false
+    enabled: true
+    check-template-location: true
+    suffix: .html
+    template-loader-path: classpath:/templates/
+    charset: UTF-8
+    content-type: text/html
+    settings:
+      default_encoding: UTF-8
+      template_update_delay: 0
+      classic_compatible: true

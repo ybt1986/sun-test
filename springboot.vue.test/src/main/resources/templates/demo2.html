@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>智能社</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<style>
+</style>
+</head>
+<body>
+	<div id="app">
+		<div>
+			<router-link to="/home">主页</router-link>
+			<router-link to="/news">新闻</router-link>
+		</div>
+		<div>
+			<router-view></router-view>
+		</div>
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+	<script src="https://cdn.bootcss.com/vue-router/2.8.1/vue-router.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+	<script>
+        $(function() {
+        	Vue.filter('toDou', function(n) {
+       			return n<10?'0'+n:''+n;
+        	});
+        	
+        	const Home = {
+        		template: `<h3>主页
+        		asdfasd
+        		<br>
+        		asdf
+        		sadf
+        		asdf
+        		sd
+        		f</h3>`
+        	};
+        	
+        	const News = {
+           		template: `<h3>新闻</h3>`
+           	};
+        	
+        	const routes = [
+        		{path:'/home', component: Home},
+        		{path:'/news', component: News},
+        		{path:'*', redirect: '/news'}
+        	];
+        	
+        	const router = new VueRouter({
+        		routes
+        	});
+
+        	new Vue({
+                router,
+                data:{
+                	number: 9
+                },
+                mounted:function(){
+                },
+                methods: {
+                	blur() {
+                		this.number = 'aaa'
+                	}
+                }
+            }).$mount('#app');
+        });
+        
+        
+    </script>
+</body>
+</html>
