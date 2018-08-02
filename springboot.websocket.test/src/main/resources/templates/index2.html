@@ -19,11 +19,11 @@
 	<div id="message"></div>
 </body>
 
-<script src="/static/stomp.js/2.3.3/stomp.min.js"></script>
-<script src="/static/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="/static/stomp.js/stomp.min.js"></script>
+<script src="/static/sockjs-client/0.3.4/sockjs.min.js"></script>
 <script src="/static/WebsocketProxy.js"></script>
 <script type="text/javascript">
-	var socket = new WebsocketProxy("http://localhost:8080/webSocketServer");
+	var socket = new WebsocketProxy("/webSocketServer");
 	socket.connect({}, function connectCallback(frame) {
 		// 连接成功时（服务器响应 CONNECTED 帧）的回调方法
 		setMessageInnerHTML("连接成功");

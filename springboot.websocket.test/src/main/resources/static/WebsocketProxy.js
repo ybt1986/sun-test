@@ -19,7 +19,7 @@
 		errorCallback 表示连接失败时（服务器响应 ERROR 帧）的回调方法，非必须；
 	 */
 	StompProxy.prototype.connect = function(headers, connectCallback, errorCallBack) {
-		this.stompClient.connect(param||{}, connectCallback, errorCallBack);
+		this.stompClient.connect(headers||{}, connectCallback, errorCallBack);
 	};
 	
 	/**
@@ -54,14 +54,14 @@
 	/**
 	 * 取消订阅
 	 */
-	StomProxy.prototype.unsubscribe = function(subscribeObj) {
+	StompProxy.prototype.unsubscribe = function(subscribeObj) {
 		subscribeObj && subscribeObj.unsubscribe();
 	};
 	
 	/**
 	 * STOMP 客户端默认将传输过程中的所有 debug 信息以 console.log() 形式输出到客户端浏览器
 	 */
-	StomProxy.prototype.debug = function(debugCallback) {
+	StompProxy.prototype.debug = function(debugCallback) {
 		this.stompClient.debug = function(str) {
 			window.console && window.console.log(str);
 			debugCallback && debugCallback(str);

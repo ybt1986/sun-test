@@ -9,7 +9,10 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 /**
  * 
  * @ClassName: WebSocketStompConfig
- * @Description: springboot websocket stomp配置
+ * @Description: springboot websocket stomp配置 
+ * 参考：
+ * 	https://docs.spring.io/spring/docs/4.0.1.RELEASE/spring-framework-reference/html/websocket.html
+ *	https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#websocket-fallback-sockjs-client
  */
 
 @Configuration
@@ -25,7 +28,7 @@ public class WebSocketStompConfig extends AbstractWebSocketMessageBrokerConfigur
 		// 在网页上我们就可以通过这个链接
 		// http://localhost:8080/webSocketServer
 		// 来和服务器的WebSocket连接
-		registry.addEndpoint("/webSocketServer").setAllowedOrigins("*").withSockJS();
+		registry.addEndpoint("/webSocketServer").withSockJS();
 	}
 
 	/**
