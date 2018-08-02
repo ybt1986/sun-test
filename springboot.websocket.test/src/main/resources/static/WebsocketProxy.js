@@ -1,4 +1,4 @@
-(function() {
+(function(window, undefined) {
 	/**
 	 * Stomp的API可查看：https://blog.csdn.net/jqsad/article/details/77745379
 	 */
@@ -69,4 +69,4 @@
 	};
 	
 	window.WebsocketProxy = StompProxy;
-})();
+})(window, undefined);
