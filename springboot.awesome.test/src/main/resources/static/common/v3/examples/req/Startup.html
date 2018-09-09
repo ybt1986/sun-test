@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+		
+		<script type="text/javascript" main-js="../js/Starup.js" src="../../cmps/core/dist/cmp-core.js"></script>
+		<link rel="stylesheet" href="../css/exmaple.css">
+		
+		<script type="text/javascript" src="../../../../public/ace/src-min/ace.js"></script>
+		
+		<title>基础组件-异步延迟载入: 我们的hello world</title>
+	</head>
+	<body>
+		<div class="context">
+			<div class="left-view">
+				<h4>执行脚本</h4>
+				<div class="code-view" id="CodeView" style="height: 75%;">/**
+ * 界面启动脚本；
+ * 一个界面最好只有一个启动脚本；否则运行上下文过多可能会造成模块混乱以及浏览器内存溢出等问题。
+ */
+(function(){
+	/**
+	 * 我们的第一个‘Hello world’
+	 * <p>
+	 * 采用AMD(异步延迟加载)模式，就要习惯使用Cmp.require方法去获得模块实例；
+	 * 这个模块实例可能是一个静态对象；也可能是一个可以被构建的类；
+	 * 此处咱们请求一个默认存在的模块并且这个模块是可以被构造的方法；
+	 * </p>
+	 */
+	Cmp.require(
+		//请求的模块内容
+		['Cmp', 'Cmp.Widget'], 
+		//得到模块后的回调方法，参数及次序就是请求模块中的次序。
+		function(c, w){
+			//参数w就是模块'Cmp.Widget'的实例，他是一个构造对象；我们可以new它。
+			var wo = new w({
+				id : 'FirstHW',
+				html : '第一个: Hello world'
+			});
+			
+			//参数c是模块'Cmp'的实例，它是一个静态对象，
+			wo.render('DemoView');
+		}
+	);
+	
+	/**
+	 * 第二个‘Hello world’
+	 * <p>
+	 * 我们使用全局命名空间的形式，定义了一些以'Cmp'开头的功能模块；
+	 * 它等价于Cmp.require('Cmp')得到的模块；我们使用这种方式来实现第一个的
+	 * ‘Hello world’程序。
+	 * 我们会发现，绘制这个部件('Cmp.Widget'的中文名)在第一个之前；
+	 * 这是因为Cmp.require中的回调方法是运行在这个脚本加载完毕后造成的。
+	 * </p>
+	 */
+	var cwo = new Cmp.Widget({
+		id : 'SecHW',
+		html : '第二个: Hello world'
+	}); 
+	cwo.render('DemoView');
+	
+	/**
+	 * 第三个：'Hello world';
+	 * <p>
+	 * 因为提倡使用AMD形式，因此很多功能都会放到Cmp.require方法的回调方法中去做。
+	 * 即使这样，我们还是可以直接调用以'Cmp'开头的基本模块
+	 * </p>
+	 */
+	Cmp.require(
+		//请求的模块内容
+		['Cmp'], 
+		//得到模块后的回调方法，参数及次序就是请求模块中的次序。
+		function(c){
+			//直接使用'Cmp.Widget'模块
+			var wo = new Cmp.Widget({
+				html : '第三个: Hello world'
+			}); 
+			//直接使用'Cmp'模块
+			wo.render('DemoView');
+			
+			//利用Cmp提供的功能方法获得已经创建的部件
+			var wo1 = Cmp.getCmp('FirstHW');
+			//该变他的文字颜色
+			wo1.el.setStyle('color','#449900');
+		}
+	);
+	
+	/**
+	 * 第四个：'Hello world';
+	 * <p>
+	 * 采用AMD的Cmp.require方法返回的模块实例，再去构建新的实例比较麻烦，因此我们增加了create方法，
+	 * 来实现直接创建模块是构造方法的对象实例；
+	 * </p>
+	 */
+	Cmp.create(
+		//用数组来构建多个模块的实例
+		[{
+			//必须的模块标识
+			module : 'Cmp.Widget',
+			//其他用于构建模块构造方法的对象实例的配置参数
+			html : '第四个: Hello world'
+		},{
+			//必须的模块标识
+			module : 'Cmp.Widget',
+			//其他用于构建模块构造方法的对象实例的配置参数
+			html : '第五个: Hello world',
+			//渲染到Body上的配置方法，它属于Cmp.Widget模块构造方法中配置对象属性；
+			renderTo : 'DemoView',
+			//创建后自动绘制，如果不设定，不会绘制到指定位置
+			autoRender : true
+		}], 
+		//接受参数上是按照创建的次序来的
+		function(w4, h5){
+			//第四个还没有绘制，但是因为第五个配置了autoRender属性，因此此时第五个已经绘制了，而第四个还没有绘制
+			w4.render('DemoView');
+		}
+	);
+}());</div>
+			</div>
+			<div class="right-view">
+				<div id="DemoView" class="demo-view"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var editor = ace.edit("CodeView");
+			editor.setTheme("ace/theme/chrome");
+			editor.setReadOnly(true);
+			editor.session.setMode("ace/mode/javascript");
+		</script>
+	</body>
+</html>

@@ -1,0 +1,166 @@
+@CHARSET "UTF-8";
+.c-grid{
+	position : relative;
+	width: 100%;
+	height: 100%;
+	
+	border : 1px solid #CCC;
+	border-radius : 3px;
+}
+.c-grid-noborder{
+	border: none;
+}
+.c-grid-nohead{
+}
+.c-grid-nofoot{
+}
+
+.c-grid-head{
+	position : absolute;
+	top : 0;
+	left : 0;
+	height : 1.4rem;
+	width: 100%;
+	border-bottom: 1px solid #CCC;	
+	z-index: 5;
+	overflow: hidden;
+	line-height: 1.4rem;
+	font-size : 0.6rem;
+	color : #808080;
+}
+.c-grid-body{
+	position : absolute;
+	top : 0;
+	left : 0;
+	height: 100%;
+	width: 100%;
+	padding-top : 1.4rem;
+	padding-bottom : 1.5rem;
+	line-height: 1.4rem;
+	font-size : 0.6rem;
+	color : #333;
+}
+.c-grid-bodybox{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+.c-grid-nofoot .c-grid-body{
+	padding-bottom : 0;
+}
+
+.c-grid-foot{
+	position : absolute;
+	bottom : 0;
+	left : 0;
+	height : 1.8rem;
+	width: 100%;
+	border-top: 1px solid #CCC;	
+	z-index: 5;
+	overflow: hidden;
+}
+.c-grid-footbox{
+	height: 100%;
+	width: 100%;
+}
+
+.c-grid-row{
+}
+.c-grid-cell{
+	position: relative;
+	overflow: hidden;
+	word-spacing: normal;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	width: 4rem;
+	padding-left : 0.3rem;
+	padding-right: 0.2rem;
+}
+
+.c-grid-head .c-grid-row{
+	height : inherit;
+	background-color: #EBEBEB;
+}
+.c-grid-head .c-grid-cell{
+	cursor: pointer;
+	text-align: center;
+}
+.c-grid-head .c-grid-nosort{
+	cursor : default;
+}
+.c-grid-sortbox{
+	position: absolute;
+	left : 0.2rem;
+	top : 0;
+	width: 0.6rem;
+	height: 1.2rem;
+	padding-top : 0.3rem;
+}
+.c-grid-sort-uparrow,
+.c-grid-sort-downarrow{
+	display: block;
+	float : none;
+	height: 0.3rem;
+	line-height:0.3rem;
+	width: 0.6rem;
+	text-align: center;
+	color : rgba(1, 165, 175, 0);
+	transition : 0.25s ease;
+}
+.c-grid-head .c-grid-cell .c-grid-sort-up .c-grid-sort-uparrow,
+.c-grid-head .c-grid-cell:hover .c-grid-sort-up .c-grid-sort-uparrow,
+.c-grid-head .c-grid-cell .c-grid-sort-down .c-grid-sort-downarrow,
+.c-grid-head .c-grid-cell:hover .c-grid-sort-down .c-grid-sort-downarrow{
+		color : rgba(1, 165, 175, 0.7);
+}
+
+.c-grid-head .c-grid-cell:hover .c-grid-sort-uparrow,
+.c-grid-head .c-grid-cell:hover .c-grid-sort-up .c-grid-sort-downarrow,
+.c-grid-head .c-grid-cell:hover .c-grid-sort-down .c-grid-sort-uparrow{
+	color : rgba(1, 165, 175, 0.3);
+}
+
+
+.c-grid-body .c-grid-row{
+	height: 1.5rem;
+	transition : 0.25s ease;
+	border-bottom: 1px solid #CCC;	
+	cursor: default;
+}
+.c-grid-striped .c-grid-body .c-grid-row:nth-of-type(odd){
+	background-color: #F7F7F7;
+}
+.c-grid-rowselect .c-grid-body .c-grid-row:hover{
+	background-color : #dcd0a8;
+}
+.c-grid-body .c-grid-selected,
+.c-grid-rowselect .c-grid-body .c-grid-selected,
+.c-grid-rowselect .c-grid-body .c-grid-selected:nth-of-type(odd){
+	background-color : #e2d9b9;
+}
+.c-grid-checkboxsel{
+	width: 1.2rem;
+}
+.c-grid-head .c-grid-checkboxsel,
+.c-grid-body .c-grid-checkboxsel{
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+	text-align: center;
+}
+
+.c-grid-checkboxsel I:before{
+	content: "\f096";
+}
+.c-grid-selected .c-grid-checkboxsel I:before{
+	content:"\f046";
+}
+.c-grid-head .c-grid-checkboxsel-part I{
+	color: #BBB;
+}
+.c-grid-head .c-grid-checkboxsel-part I:before{
+	content: "\f14a";
+}
+.c-grid-head .c-grid-checkboxsel-full I:before{
+	content: "\f046";
+}

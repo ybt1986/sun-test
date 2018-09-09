@@ -1,0 +1,43 @@
+.cp-tabpanel {
+    width: 100%;
+    position: relative;
+}
+.cp-tabpanel-tabs {
+    padding: 0 1.153846rem;
+    border-bottom: 1px solid #ccc;
+}
+.cp-tabpanel .cp-tabpanel-tab {
+    transition: all 0.25s ease-in-out 0s;
+    position: relative;
+    display: inline-block;
+    font-size: 0.615385rem;
+    color: #000;
+    padding: 0.384615rem 0.7rem;
+    border-bottom: 0.115385rem solid transparent;
+    cursor: pointer;
+    user-select: none;
+}
+.cp-tabpanel .cp-tabpanel-tab::before {
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    content: '\f0d8';
+    position: absolute;
+    bottom: -0.2rem;
+    color: transparent;
+    border: none;
+    width: 100%;
+    left: 0;
+    text-align: center;
+}
+.cp-tabpanel .cp-tabpanel-tab.on {
+    border-bottom: 0.115385rem solid #4485c5;
+    color: #4485c5;
+}
+.cp-tabpanel .cp-tabpanel-panel {
+    width: 100%;
+}
+.cp-tabpanel .cp-tabpanel-container {
+    padding: 0.5rem;
+}

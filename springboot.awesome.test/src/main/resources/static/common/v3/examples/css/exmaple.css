@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+html {
+	height: 100%;
+	width: 100%;
+	font-size : 20px;
+	font-family: "Microsoft JhengHei" Arial ;
+}
+body{
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+h4{
+	font-size : 0.7rem;
+}
+*{
+	box-sizing : border-box;
+}
+.context{
+	width: 100%;
+	height: 100%;
+}
+.left-view{
+	position: absolute;
+	height: 100%;
+	width: 50%;
+	top : 0;
+	left : 0;
+	padding : 2rem;
+}
+.code-view{
+	position : relative;
+	border : 1px solid #CCC;
+	height: 100%;
+	width: 100%;
+}
+.right-view{
+	position: absolute;
+	height: 100%;
+	width: 50%;
+	top : 0;
+	right : 0;
+	
+	padding : 2rem;
+}
+.demo-bgview{
+	position : relative;
+	border : 1px solid #CCC;
+	background-color : #EEE;
+	height: 100%;
+	width: 100%;
+	padding : 0.2rem;
+}
+.demo-bgview H4{
+	margin: 0.5rem 1rem;
+}
+.demo-view{
+	position : relative;
+	background-color : #FFF;
+	border : 1px solid #CCC;
+	height: 90%;
+	width: 100%;
+}

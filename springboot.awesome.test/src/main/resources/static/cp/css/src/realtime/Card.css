@@ -1,0 +1,62 @@
+.cp-card {
+  padding: 2rem;
+  background-color: #e6f0fc;
+  text-align: center;
+  user-select: none;
+  border: 1px solid #d8eaf3;
+}
+.cp-card .cp-card-iconbox {
+  display: inline-block;
+  padding: 0.6rem 0.7rem;
+  border-radius: 100%;
+  background-color: white;
+}
+.cp-card .cp-card-label {
+  color: #003a99;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.5rem 0 0.2rem 0;
+}
+.cp-card .cp-card-main {
+  color: #003a99;
+  padding: 0.5rem 0;
+}
+.cp-card .cp-card-main > span {
+  display: inline-block;
+}
+.cp-card .cp-card-main > span.cp-card-main-val {
+  font-size: 1.5rem;
+}
+.cp-card .cp-card-main > span.cp-card-main-unit {
+  font-size: 1rem;
+  display: inline-block;
+  padding-left: 0.5rem;
+}
+.cp-card .cp-card-compare > .cp-card-label,
+.cp-card .cp-card-compare > .cp-card-cpvalue {
+  font-size: 0.6rem;
+  color: #333;
+  padding: 0.5rem 0;
+  font-weight: normal;
+}
+
+.cp-card .cp-card-compare > .cp-card-cpvalue::after {
+  padding-right: 0.1rem;
+  font-weight: bold;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  padding-left: 0.1rem;
+}
+.cp-card .cp-card-compare > .up-value::after {
+  color: #ec5a5b;
+  content: '\f062';
+}
+.cp-card .cp-card-compare > .down-value::after {
+  color: #41be85;
+  content: '\f063';
+}

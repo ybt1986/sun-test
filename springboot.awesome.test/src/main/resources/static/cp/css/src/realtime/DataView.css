@@ -1,0 +1,32 @@
+.cp-dv {}
+.cp-dv .cp-dv-h12 {
+  height: 15rem;
+}
+.cp-dv .cp-dv-h28 {
+  height: 28rem;
+  position: relative;
+}
+.cp-dv .cp-dv-h12 > div,
+.cp-dv .cp-dv-h28 > div {
+  height: 100%;
+}
+.cp-dv .cp-dv-h28 > div {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+.map-icon {
+  position: absolute !important;
+  bottom: 1rem;
+  right: 2rem;
+  height: 2rem !important;
+  border: none !important;
+  line-height: 2rem;
+  vertical-align: top;
+  padding: 0 !important;
+  font-size: 0.6rem;
+}
+.mapIcon{
+  font-size: 1rem;
+  color: #f00;
+  vertical-align: middle;
+}

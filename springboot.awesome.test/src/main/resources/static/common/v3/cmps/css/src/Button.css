@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+.c-btn{
+	height: 1rem;
+	padding-left : 0.5rem;
+	padding-right : 0.5rem;
+	border-width: 1px;
+	border-color: #BBB;
+	border-style: solid;
+	background-color: transparent;
+	border-radius : 0.1rem;
+	cursor: pointer;
+	transition : 0.25s ease;
+	font-size : 0.5rem;
+	font-weight: normal;
+	overflow: hidden;
+	word-spacing: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	vertical-align: middle;
+}
+.c-btn I{
+	display: inline-block;
+	width: 1rem;
+}
+.c-btn-noicon I,
+.c-btn-noicon img{
+	display: none;
+}
+.c-btn B{
+	font-weight: inherit;
+}
+.c-btn-notext B{
+	display: none;
+}
+.c-btn:focus{
+	outline : none; 
+}
+.c-btn:hover{
+	background-color : #FCFCFC;
+	border-color: #CCC;
+	-webkit-box-shadow: inset 0 1px 1px rgba(255,255,255, 0.1), 0 0 0.4rem rgba(192, 192, 192, 0.6);
+	box-shadow: inset 0 1px 1px rgba(255,255,255, 0.1), 0 0 0.4rem rgba(192, 192, 192, 0.6);
+}

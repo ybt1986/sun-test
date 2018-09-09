@@ -1,0 +1,177 @@
+@CHARSET "UTF-8";
+.c-tcbx{
+
+}
+.c-tcbx-opwarp {
+  width : 100%;
+  min-width : 3rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(1, 165, 175);
+  padding : 0.1rem;
+  border-radius : 2px;
+  background-color: #FFF;
+  max-height: 12rem;
+  overflow: auto;
+  margin:0px;
+}
+.c-tcbx-op-title {
+  vertical-align: middle;
+}
+.c-tcbx-op-title > * {
+  vertical-align: middle;
+}
+
+
+/* tree */
+@CHARSET "UTF-8";
+.c-tree{
+  position: relative;
+  width : 100%;
+  height: 100%;
+  overflow: auto;
+  
+  border:1px solid #CCC;
+}
+.c-tree-noborder{
+  border : none;
+}
+
+.c-treenode{
+  position: relative;
+  width: 100%;
+  height: auto;
+  font-size : 0.6rem;
+  line-height: 1rem;
+  cursor: default;
+  -moz-user-select:none;/*火狐*/
+  -webkit-user-select:none;/*webkit浏览器*/
+  -ms-user-select:none;/*IE10*/
+  -khtml-user-select:none;/*早期浏览器*/
+  user-select:none;
+}
+.c-treenode-item{
+  position: relative;
+  width: 100%;
+  height: 1rem;
+  transition : background 0.25s ease;
+}
+.c-treenode-selected {
+  background-color: #d6eafc;  
+}
+
+.c-treenode-childbox{
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.c-treenode-warp{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.c-treenode-empty .c-treenode-warp{
+  font-style: italic;
+  color : #666;
+}
+.c-treenode-trigger{
+  position: absolute;
+  z-index: 15;
+  top : 0;
+  left : 0;
+  width : 1.6rem;
+  height: 100%;
+}
+.c-treenode-inner{
+  position: absolute;
+  z-index: 5;
+  top : 0;
+  left : 0;
+  width : 100%;
+  height: 100%;
+  padding-left:1.6rem;
+}
+.c-treenode-body{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  word-spacing: normal;
+  white-space: nowrap;
+  padding-left : 0.2rem;
+}
+.c-treenode-warp .arrow,
+.c-treenode-warp .node{
+  display : inline-block;
+  font-family: "FontAwesome";
+  width: 0.8rem;
+  text-align: center;
+}
+.c-treenode-warp .arrow{
+  color : #888;
+  font-size : 0.5rem;
+}
+.c-treenode-warp .node{
+  color : #508cc5;
+}
+.c-treenode-folder .arrow{
+  cursor: pointer;
+}
+.c-treenode-folder .arrow:before{
+  content: "\f196";
+}
+.c-tree-usrarrow .c-treenode-folder .arrow:before{
+  content: "\f0da";
+}
+
+/*多选框样式*/
+.c-treenode-warp .multi-select .uncheck:before{
+  content: "\f096";
+}
+.c-treenode-warp .multi-select .checked:before{
+  content: "\f046";
+}
+.c-treenode-warp .multi-select .half-check:before{
+  content: "\f0c8";
+}
+/*单选框样式*/
+.c-treenode-warp .single-select .uncheck:before{
+  content: "\f10c";
+}
+.c-treenode-warp .single-select .checked:before{
+  content: "\f111";
+}
+/*.c-treenode-warp .single-select .half-check:before{
+  content: "\f0c8";
+}*/
+
+
+.c-treenode-extended .arrow:before{
+  content: "\f147";
+}
+.c-tree-usrarrow .c-treenode-extended .arrow:before{
+  content: "\f0d7";
+}
+
+.c-treenode-leaf .arrow{
+  visibility: hidden;
+}
+
+
+.c-treenode-body .icon{
+  display: inline-block;
+}
+.c-treenode-body .text{
+  display: inline;
+  padding-right: 0.25rem;
+}
+
+.c-tree-mask{
+  position: absolute;
+  z-index: 100;
+  top : 0;
+  left : 0;
+  width : 100%;
+  height: 100%;
+}

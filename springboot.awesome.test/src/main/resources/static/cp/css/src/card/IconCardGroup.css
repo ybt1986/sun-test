@@ -1,0 +1,57 @@
+.lp-cardgroup {
+    width: 100%;
+    vertical-align: top;
+}
+.lp-cardgroup .lp-cardgroup-item:first-child{
+    border-left: 1px solid #d8eaf3;
+}
+.lp-cardgroup .lp-cardgroup-item:first-child .icon{
+    background-image: url("/valueSupplyChain/images/xh.png");
+    background-size: 100% 100%;
+}
+.lp-cardgroup .lp-cardgroup-item:first-child .on .icon{
+    background-image: url("/valueSupplyChain/images/xh-active.png");
+    background-size: 100% 100%;
+}
+
+.lp-cardgroup .lp-cardgroup-item:nth-child(2) .icon{
+    background-image: url("/valueSupplyChain/images/qh.png");
+    background-size: 100% 100%;
+}
+.lp-cardgroup .lp-cardgroup-item:nth-child(2) .on .icon{
+    background-image: url("/valueSupplyChain/images/qh-active.png");
+    background-size: 100% 100%;
+}
+
+.lp-cardgroup .lp-cardgroup-item:nth-child(3) .icon{
+    background-image: url("/valueSupplyChain/images/kczz.png");
+    background-size: 100% 100%;
+}
+.lp-cardgroup .lp-cardgroup-item:nth-child(3) .on .icon{
+    background-image: url("/valueSupplyChain/images/kczz-active.png");
+    background-size: 100% 100%;
+}
+
+.lp-cardgroup .lp-cardgroup-item:nth-child(4) .icon{
+    background-image: url("/valueSupplyChain/images/zmx.png");
+    background-size: 100% 100%;
+}
+.lp-cardgroup .lp-cardgroup-item:nth-child(4) .on .icon{
+    background-image: url("/valueSupplyChain/images/zmx-active.png");
+    background-size: 100% 100%;
+}
+.lp-cardgroup .lp-cardgroup-item {
+    display: inline-block;
+    box-sizing: border-box;
+    border-top:1px solid #d8eaf3;
+    border-right: 1px solid #d8eaf3;
+}
+.lp-card-title{
+    height: 2rem;
+    line-height: 2rem;
+    font-size: .8rem !important;
+}
+.lp-cardgroup-footer{
+    font-size: 0.6rem;
+    line-height: 1.8rem;
+}

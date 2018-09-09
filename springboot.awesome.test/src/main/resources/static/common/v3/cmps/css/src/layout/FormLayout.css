@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+.c-formlayout{
+
+}
+.c-formlayout .c-ly-item{
+	position : relative;
+	margin-top: 0.2rem;
+	margin-bottom: 0.2rem;
+	padding-right: 0.2rem;
+	padding-left: 0.2rem;
+}

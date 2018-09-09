@@ -1,0 +1,90 @@
+@CHARSET "UTF-8";
+.c-flowitem{
+	position : relative;
+	height: 2.4rem;
+	min-width: 3.6rem;
+	width: 6rem;
+	cursor: default;
+}
+.c-flowitem-bar{
+	position : relative;
+	width: 100%;
+	height: 1.15rem;
+	clear: both;
+	text-align: center;
+}
+.c-flowitem-label{
+	position : relative;
+	width: 100%;
+	height: 1.2rem;
+	text-align: center;
+	font-size : 0.6rem;
+	font-weight: normal;
+	overflow: hidden;
+	word-spacing: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	color : #90CFFA;
+	line-height: 1.2rem;
+}
+.c-flowitem-bk{
+	position: absolute;
+	z-index: 5;
+	top : 0.45rem;
+	background-color: #A5D4F4;
+	height: 0.25rem;
+	width: 100%;
+}
+.c-flowitem-anchor{
+	position : absolute;
+	z-index: 15;
+	top : 50%;
+	left : 50%;
+}
+.c-flowitem-anchor-inner{
+	position : relative;
+	top : -0.475rem;
+	left : -0.475rem;
+	height: 0.95rem;
+	width: 0.95rem;
+	
+	border-radius : 5rem;
+	line-height: 0.95rem;
+	background-color: #A5D4F4;
+	color : #FFF;
+	font-size : 0.6rem;
+	text-align: center;
+}
+.c-flowitem-disabled .c-flowitem-bk{
+	background-color: #CCC;
+}
+.c-flowitem-disabled .c-flowitem-anchor-inner{
+	background-color: #CCC;
+}
+.c-flowitem-disabled .c-flowitem-label{
+	color: #AAA;
+}
+.c-flowitem-active .c-flowitem-bk{
+	background-color: #45A2E1;
+}
+.c-flowitem-active .c-flowitem-anchor-inner{
+	background-color: #45A2E1;
+	height: 1.15rem;
+	width: 1.15rem;
+	top : -0.575rem;
+	left : -0.575rem;
+	line-height: 1.15rem;
+}
+.c-flowitem-active .c-flowitem-label{
+	color: #2F8DCC;
+}
+
+.c-flowitem[clickable]{
+	cursor: pointer;
+}
+.c-flowitem-disabled[clickable],
+.c-flowitem-active[clickable]{
+	cursor: default;
+}

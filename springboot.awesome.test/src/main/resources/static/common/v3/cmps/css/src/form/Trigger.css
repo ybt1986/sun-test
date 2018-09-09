@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+.c-trg{
+	
+}
+.c-trg input{
+	padding-right: 1.6rem;
+}
+.c-trg-btn{
+	position: absolute;
+	display : block;
+	right: 1px;
+	top : 0;
+	height: 100%;
+	width: 1.4rem;
+	line-height: 1.4rem;
+	text-align: center;
+	font-size : 0.7rem;
+	cursor: pointer;
+	color : #888;
+	border-left-width : 1px; 
+	border-left-style : solid;
+	border-left-color : rgba(0,0,0,0);
+	transition : border 0.25s ease, color 0.25s ease, background 0.25s ease; 
+}
+.c-trg .c-fd-readonly:hover .c-trg-btn,
+.c-trg-btn:hover{
+	border-left-color: rgba(15, 166, 237, 0.6);
+	background-color: rgba(15, 166, 237, 0.05);
+	color : rgb(15, 166, 237);
+}
+.c-trg .c-fd-readonly input{
+	cursor: pointer;
+}
