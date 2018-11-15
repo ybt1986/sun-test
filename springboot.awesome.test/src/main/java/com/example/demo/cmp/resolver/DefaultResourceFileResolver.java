@@ -46,11 +46,16 @@ public class DefaultResourceFileResolver implements ResourceResolver {
 		}
 	}
 	
-	public File getFile(URL resourceUrl) throws FileNotFoundException {
+	@Override
+	public boolean exist(String resourceLocation) {
+		return true;
+	}
+	
+	private File getFile(URL resourceUrl) throws FileNotFoundException {
 		return getFile(resourceUrl, "URL");
 	}
 
-	public File getFile(URL resourceUrl, String description) throws FileNotFoundException {
+	private File getFile(URL resourceUrl, String description) throws FileNotFoundException {
 		Assert.notNull(resourceUrl, "Resource URL must not be null");
 		if (!ResourceUtils.URL_PROTOCOL_FILE.equals(resourceUrl.getProtocol())) {
 			throw new FileNotFoundException(
@@ -66,11 +71,13 @@ public class DefaultResourceFileResolver implements ResourceResolver {
 		}
 	}
 	
-	public URI toURI(URL url) throws URISyntaxException {
+	private URI toURI(URL url) throws URISyntaxException {
 		return toURI(url.toString());
 	}
 	
-	public URI toURI(String location) throws URISyntaxException {
+	private URI toURI(String location) throws URISyntaxException {
 		return new URI(StringUtils.replace(location, " ", "%20"));
 	}
+
+	
 }

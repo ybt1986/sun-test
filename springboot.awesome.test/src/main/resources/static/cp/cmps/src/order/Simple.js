@@ -31,6 +31,9 @@
 						emptyText : "请输入"
 					});
 					me.textField.render(me.el);
+					
+					debugger
+					me.textField.dom;
 				}
 			})
 		}

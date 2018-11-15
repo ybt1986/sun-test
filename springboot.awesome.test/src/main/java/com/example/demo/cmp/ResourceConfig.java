@@ -15,7 +15,7 @@ public class ResourceConfig {
 	
 	private List<String> fileExtensions = Lists.newArrayList("js", "css");
 	
-	private String staticPath = "classpath:static";
+	private String staticPath = "classpath*:static";
 	
 	private ResourceResolver resourceResolver = new PathMatchingResourceFileResolver();
 
