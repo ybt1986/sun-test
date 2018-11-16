@@ -11,6 +11,14 @@ import com.example.demo.cmp.resolver.ResourceResolver;
 import com.google.common.collect.Lists;
 
 public class ResourceConfig {
+	private boolean enableCache;
+	
+	private boolean enableMin;
+	
+	private boolean enableVersion;
+	
+	private boolean enableCompress;
+	
 	private ICache cache = CacheKit.getLocalCache();
 	
 	private List<String> fileExtensions = Lists.newArrayList("js", "css");
@@ -66,4 +74,38 @@ public class ResourceConfig {
 	public void setResourceResolver(ResourceResolver resourceResolver) {
 		this.resourceResolver = resourceResolver;
 	}
+
+	public boolean isEnableCache() {
+		return enableCache;
+	}
+
+	public void setEnableCache(boolean enableCache) {
+		this.enableCache = enableCache;
+	}
+
+	public boolean isEnableMin() {
+		return enableMin;
+	}
+
+	public void setEnableMin(boolean enableMin) {
+		this.enableMin = enableMin;
+	}
+
+	public boolean isEnableVersion() {
+		return enableVersion;
+	}
+
+	public void setEnableVersion(boolean enableVersion) {
+		this.enableVersion = enableVersion;
+	}
+
+	public boolean isEnableCompress() {
+		return enableCompress;
+	}
+
+	public void setEnableCompress(boolean enableCompress) {
+		this.enableCompress = enableCompress;
+	}
+	
+	
 }
