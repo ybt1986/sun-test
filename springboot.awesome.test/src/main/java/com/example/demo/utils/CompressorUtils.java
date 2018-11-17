@@ -21,7 +21,7 @@ import com.yahoo.platform.yui.compressor.JavaScriptCompressor;
 public class CompressorUtils {
    private final static Logger logger = Logger.getLogger(CompressorUtils.class);
 
-   public static void compressJS(File js, Writer out) throws Exception {
+   public static void compressJS(File js, Writer out) throws IOException {
       compressJS(js, out, -1, true, true, false, false);
    }
 

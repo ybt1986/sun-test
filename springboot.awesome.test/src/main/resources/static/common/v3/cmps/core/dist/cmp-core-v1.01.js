@@ -5986,7 +5986,6 @@ Cmp.applyIf(Function.prototype, {
 				//还未处理请求模块
 				for(i=0,len = isA(ms) ? ms.length : 0;i<len;i++){
 					m = ms[i];
-					debugger
 					doRequireModules.call(me, m.module, m.callback, m.scope);
 				}	
 				delete me.requireModules;
