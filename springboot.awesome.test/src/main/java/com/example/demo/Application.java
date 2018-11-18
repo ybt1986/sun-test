@@ -17,11 +17,11 @@ public class Application {
     }
 	
 	@Bean
-	public ResourceConfig cmpResourceConfig() {
+	public ResourceConfig resourceConfig() {
 		ResourceConfig config = new ResourceConfig();
 		config.setEnableCache(true);
 		config.setEnableMin(true);
-		config.setEnableCompress(true);
+//		config.setEnableCompress(true);
 		config.setStaticPath("classpath*:static");
 //		config.setContextPath("/test");
 		return config;
@@ -29,7 +29,7 @@ public class Application {
 	
 	@Bean 
 	public FilePreheater filePreheater() {
-		FilePreheater preheater = new FilePreheater();
+		FilePreheater preheater = new FilePreheater(resourceConfig());
 		preheater.preheat();
 		return preheater;
 	}

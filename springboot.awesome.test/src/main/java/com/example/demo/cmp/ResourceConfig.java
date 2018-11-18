@@ -6,17 +6,20 @@ import com.example.demo.cmp.resolver.PathMatchingResourceFileResolver;
 import com.example.demo.cmp.resolver.ResourceResolver;
 
 public class ResourceConfig {
+	public static final String CLASSPATH_ALL_URL_PREFIX = "classpath*:static";
+	public static final String CLASSPATH_URL_PREFIX = "classpath:static";
+	
 	private boolean enableCache = true;
 	
 	private boolean enableMin = true;
 	
 	private boolean enableVersion = true;
 	
-	private boolean enableCompress = true;
+	private boolean enableCompress = false;
 	
 	private ICache cache = CacheKit.getLocalCache();
 	
-	private String staticPath = "classpath*:static";
+	private String staticPath = CLASSPATH_ALL_URL_PREFIX;
 	
 	private ResourceResolver resourceResolver = new PathMatchingResourceFileResolver();
 	

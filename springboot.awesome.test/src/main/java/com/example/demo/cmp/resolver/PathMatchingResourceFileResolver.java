@@ -5,15 +5,13 @@ import java.io.IOException;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 
 public class PathMatchingResourceFileResolver implements ResourceResolver {
-	private ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
 	
 	@Override
 	public File getFile(String resourceLocation) throws IOException {
 		String path = resourceLocation;
-		Resource[] resources = resourceResolver.getResources(path);
+		Resource[] resources = new PathMatchingResourcePatternResolver().getResources(path);
 		if(resources == null || resources.length == 0|| !resources[0].exists()) {
 			return null;
 		}
@@ -24,10 +22,9 @@ public class PathMatchingResourceFileResolver implements ResourceResolver {
 	@Override
 	public boolean exist(String resourceLocation) {
 		try {
-			Resource[] resources = resourceResolver.getResources(resourceLocation);
+			Resource[] resources = new PathMatchingResourcePatternResolver().getResources(resourceLocation);
 			return resources != null && resources.length > 0 && resources[0].exists();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;

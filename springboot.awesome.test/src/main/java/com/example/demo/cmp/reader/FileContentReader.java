@@ -13,6 +13,11 @@ import com.example.demo.utils.CompressorUtils;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 
+/**
+ * 文件内容读取
+ * @author suncht
+ *
+ */
 public class FileContentReader {
 	private ResourceConfig resourceConfig;
 	private String fileName;
