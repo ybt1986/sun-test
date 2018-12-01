@@ -4793,9 +4793,10 @@ Cmp.applyIf(Function.prototype, {
 	 * @param {Context} ctx 该模块所在的运行上下文
 	 * @param {String} moduleId 模块标识
 	 */
-	PK.Module = function(ctx, moduleId){
+	PK.Module = function(ctx, moduleId, moduleVersion){
 		var me = this,
-			_id = moduleId;
+			_id = moduleId,
+			_version = moduleVersion;
 			
 		me.context = ctx;
 		me.ready = false;
@@ -4810,7 +4811,13 @@ Cmp.applyIf(Function.prototype, {
 		 */
 		me.getId = function(){
 			return _id;
-		}	
+		},
+		/**
+		 * 获取该模块的版本号
+		 */
+		me.getVersion = function() {
+			return _version;
+		}
 	}
 	PK.Module.prototype = {
 		/**
@@ -4835,7 +4842,7 @@ Cmp.applyIf(Function.prototype, {
 			}
 			me.loading = true;
 			//加载JS，因为JS文件
-			me.context.loadModule(me.getId(), me.onLoadModuleJs, me);
+			me.context.loadModule(me.getId(), me.getVersion(), me.onLoadModuleJs, me);
 		},
 		/**
 		 * @public
@@ -5027,7 +5034,7 @@ Cmp.applyIf(Function.prototype, {
 				cls = me.modulePrototype.cls;
 			//加载CSS可以不用等到下载后再去直接告知	
 			if(true === cls || isS(cls) || isA(cls)){
-				me.context.loadMoudleCss(me.getId(), cls);	
+				me.context.loadMoudleCss(me.getId(), me.getVersion(), cls);	
 			}
 			
 			me.loadedCss = true;
@@ -5051,7 +5058,7 @@ Cmp.applyIf(Function.prototype, {
 	/**
 	 * 合并路径
 	 */
-	var appendPath = function(basePath, offsetPath){
+	var appendPath = function(basePath, offsetPath, version){
 		if(!isS(offsetPath) || '' === offsetPath || './' === offsetPath){
 			return basePath;
 		}
@@ -5066,7 +5073,8 @@ Cmp.applyIf(Function.prototype, {
 		var bp = basePath,
 			op = offsetPath,
 			ix = op.indexOf('../'),
-			iix;
+			iix,
+			result;
 		while(0 === ix){
 			iix = bp.lastIndexOf('/');
 			bp = bp.substring(0, iix);
@@ -5074,10 +5082,17 @@ Cmp.applyIf(Function.prototype, {
 			ix = op.indexOf('../')
 		}	
 		if('' === op){
-			return bp;
+			result = bp;
 		}
 		else{
-			return bp+'/'+op;
+			result = bp+'/'+op;
+		}
+		
+		if(version && version !== '') {
+			debugger
+			return result + '-' + version
+		} else {
+			return result;
 		}
 	}
 	
@@ -5149,16 +5164,16 @@ Cmp.applyIf(Function.prototype, {
 		 * @param {Function} callback 加载完毕后的回调方法;如果加载不成功，则传入false。否则传入true。
 		 * @param {Object} scope 调用回调方法时的this对象设定。
 		 */
-		loadModule : function(module, callback, scope){
+		loadModule : function(module, version, callback, scope){
 			var me = this;
 			if(me.initing){
 				return ;
 			}
 			if(me.isStatic()){
-				me.doLoadModuleByStatic(module, callback, scope);
+				me.doLoadModuleByStatic(module, version, callback, scope);
 			}
 			else{
-				me.doLoadModuleByAmd(module, callback, scope);			
+				me.doLoadModuleByAmd(module, version, callback, scope);			
 			}
 		},
 		/**
@@ -5172,7 +5187,7 @@ Cmp.applyIf(Function.prototype, {
 		 *			为一个数组时，表示要加载多个CSS文件；位置同一个文件的含义。
 		 *			其他值表示无须加载CSS文件
 		 */
-		loadMoudleCss : function(module, cls){
+		loadMoudleCss : function(module, version, cls){
 			var me = this,
 				c,src = false;
 			if(!cls || me.isNoRequire()){
@@ -5188,7 +5203,7 @@ Cmp.applyIf(Function.prototype, {
 				
 				//下载
 			if(true === cls){
-				src = me.buildBasePathByModule(module, true);
+				src = me.buildBasePathByModule(module, version, true);
 				src = [src+'.css'];
 			}
 			else if(isS(cls)){
@@ -5304,7 +5319,7 @@ Cmp.applyIf(Function.prototype, {
 		 * @param {Function} callback 加载完毕后的回调方法;如果加载不成功，则传入false。否则传入true。
 		 * @param {Object} scope 调用回调方法时的this对象设定。
 		 */
-		doLoadModuleByStatic : function(module, callback, scope){
+		doLoadModuleByStatic : function(module, version, callback, scope){
 			var me = this,
 				ms,m;
 			if(me.isNoRequire()){
@@ -5339,7 +5354,7 @@ Cmp.applyIf(Function.prototype, {
 				//加载代码
 				me.addModuleLoadListener(module, callback, scope);
 				if(!me.isLoadingForModule(module)){
-					var src = me.buildBasePathByModule(module)+'.js';
+					var src = me.buildBasePathByModule(module, version)+ (me.context.useMin ? '.min.js' : '.js');
 					RD.load(src, function(dom){
 						m = me.context.modules[module];
 						if(m){
@@ -5359,12 +5374,12 @@ Cmp.applyIf(Function.prototype, {
 		 * @param {Function} callback 加载完毕后的回调方法;如果加载不成功，则传入false。否则传入true。
 		 * @param {Object} scope 调用回调方法时的this对象设定。
 		 */
-		doLoadModuleByAmd : function(module, callback, scope){
+		doLoadModuleByAmd : function(module, version, callback, scope){
 			//TODO
 			var me = this;
 			me.addModuleLoadListener(module, callback, scope);
 			if(!me.isLoadingForModule(module)){
-				var src = me.buildBasePathByModule(module)+ (me.context.useMin ? '.min.js' : '.js');
+				var src = me.buildBasePathByModule(module, version)+ (me.context.useMin ? '.min.js' : '.js');
 				//var src = me.buildBasePathByModule(module)+'.js';
 //				putLog('ModuleLoader#doLoadModuleByAmd> module:'+module+', js path:'+src);
 				RD.load(src, function(dom){
@@ -5424,7 +5439,7 @@ Cmp.applyIf(Function.prototype, {
 		 * 根据模块标识名，构建不带有后缀名的文件路径。
 		 * @param {String} module 模块标志
 		 */
-		buildBasePathByModule : function(module, isCss){
+		buildBasePathByModule : function(module, version, isCss){
 			var me = this,
 				meid = me.getModule(),
 				ix = meid.length,
@@ -5449,7 +5464,8 @@ Cmp.applyIf(Function.prototype, {
 			
 			return appendPath(
 					true === isCss ? me.baseCssDirectory : me.baseDirectory, 
-					src
+					src,
+					version
 				);	
 		}
 	};
@@ -5493,8 +5509,21 @@ Cmp.applyIf(Function.prototype, {
 			cb(undefined);
 			return ;
 		}
+		debugger
 		var me = this,
+			m, version;
+		
+		//处理版本号
+		var index = mid.indexOf(':');
+		if(mid.indexOf(':') > 0) {
+			version = mid.substring(index + 1);
+			mid = mid.substring(0, index);
 			m = me.modules[mid];
+		} else {
+			m = me.modules[mid]
+			version = ''
+		}
+		
 		if(m){
 			//模块已经存在
 			if(m.isReady()){
@@ -5506,7 +5535,7 @@ Cmp.applyIf(Function.prototype, {
 		}
 		else{
 			//模块还不存在，只有先创建它然后当初始化完毕后
-			m = new PK.Module(me, mid);
+			m = new PK.Module(me, mid, version);
 			me.modules[mid] = m;
 			m.init(cb);
 		}
@@ -5532,6 +5561,7 @@ Cmp.applyIf(Function.prototype, {
 		
 		var _requireModule = function(mid){
 			requireModule.call(me, mid, function(m){
+				debugger
 				ms.push(m);
 				if(modules.length > 0){
 					_requireModule(modules.shift());
@@ -5663,10 +5693,10 @@ Cmp.applyIf(Function.prototype, {
 		 * @param {Function} callback 加载完毕后的回调方法;如果加载不成功，则传入false。否则传入true。
 		 * @param {Object} scope 调用回调方法时的this对象设定。
 		 */
-		loadModule : function(module, callback, scope){
+		loadModule : function(module, version, callback, scope){
 //			putLog('Context#loadModule> module:'+module);
 			var loader = this.getModuleLoader(module);
-			loader.loadModule(module, callback, scope);
+			loader.loadModule(module, version, callback, scope);
 		},
 		/**
 		 * 装载指定模块的CSS文件
@@ -5678,14 +5708,14 @@ Cmp.applyIf(Function.prototype, {
 		 *			为一个数组时，表示要加载多个CSS文件；位置同一个文件的含义。
 		 *			其他值表示无须加载CSS文件
 		 */
-		loadMoudleCss : function(module, cls){
+		loadMoudleCss : function(module, version, cls){
 			if(!module){
 				//无须加载
 				Cmp.invoke(callback, scope);
 				return ;
 			}
 			var loader = this.getModuleLoader(module);
-			loader.loadMoudleCss(module, cls);
+			loader.loadMoudleCss(module, version, cls);
 		},
 		/**
 		 * 获得启动该上下文的主脚本位置; 
@@ -5817,7 +5847,19 @@ Cmp.applyIf(Function.prototype, {
 				return ;
 			}
 			var me = this,
+				m, version;
+			
+			//处理版本号
+			var index = module.indexOf(':');
+			if(index > 0) {
+				version = module.substring(index + 1);
+				module = module.substring(0, index);
+				m = me.modules[module]
+			} else {
 				m = me.modules[module];
+				version = '';
+			}
+			
 			if(m){
 				//已经存在，判断是否已经初始化过，如果没有，则设定其原形。
 				if(!m.isReady()){
@@ -5826,7 +5868,7 @@ Cmp.applyIf(Function.prototype, {
 			}
 			else{
 				//不存在，则创建它
-				m = new PK.Module(me, module);
+				m = new PK.Module(me, module, version);
 				//加入属于模块包预加载标记位，表示无需加载其资源
 				m.setModulePrototype(cfg, me.inLoadModuleing);			
 				me.modules[module] = m;
@@ -5853,8 +5895,9 @@ Cmp.applyIf(Function.prototype, {
 		 * @return this
 		 */
 		require : function(module, callback, scope){
-			var me = this;
+			var me = this, version;
 //			putLog('Context#require>isReady:'+me.isReady()+', module:'+module);
+			debugger
 			if(me.isReady()){
 				doRequireModules.call(me, module, callback, scope);
 			}
@@ -5862,8 +5905,15 @@ Cmp.applyIf(Function.prototype, {
 				if(!me.requireModules){
 					me.requireModules = [];
 				}
+//				if(module.indexOf(':')>0) {
+//					version = module.substring(module.indexOf(':'));
+//					module = module.substring(0, module.indexOf(':'));
+//				} else {
+//					version = '';
+//				}
 				me.requireModules.push({
 					module : module,
+//					version: version,
 					callback : callback,
 					scope : scope
 				});
@@ -5958,6 +6008,7 @@ Cmp.applyIf(Function.prototype, {
 				m;
 			//Step 1: 设置基本属性
 //			putLog('Context#onMainJsLoad> mainjs src:'+dom[0].src);
+			debugger
 			me.rootPath = m = dom[0].src;
 			i = m.indexOf('?');
 			if(i > 0){

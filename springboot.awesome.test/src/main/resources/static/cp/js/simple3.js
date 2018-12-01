@@ -8,6 +8,7 @@
             // EChart
             //'../../../../../public/echart-3.2.3/dist/echarts.min.js'
             //'../../../../../public/echart-3.2.3/map/js/china.js'
+        	'https://cdn.bootcss.com/jquery/1.12.4/jquery.js'
         ]
     }, {
         module: 'Cp',
@@ -21,7 +22,7 @@
 
     Cmp.require(
         [
-            'Cp.order.Simple:1.0'
+            'Cp.order.Simple'
         ],
         function(ViewClz) {
         	debugger
