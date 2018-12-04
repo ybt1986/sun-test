@@ -1,0 +1,247 @@
+@CHARSET "UTF-8";
+.c-win{
+	position: absolute;
+	border: 1px solid #3498db;
+	background-color: rgba(52, 152, 219, 0.25);
+	border-radius : 0.15rem;
+	
+	-webkit-box-shadow: inset 0 1px 1px rgba(255,255,255, 0.1), 0 0 0.4rem rgba(52, 152, 219, 0.6);
+	box-shadow: inset 0 1px 1px rgba(255,255,255, 0.1), 0 0 0.4rem rgba(52, 152, 219, 0.6);
+}
+.c-win-box{
+	position : relative;
+	width: 100%;
+	height: 100%;
+	background-color: #bce5f3;
+}
+
+.c-win-head{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width: 100%;
+	height: 1.2rem;
+	background-color: #3bafda;
+	z-index: 10;
+}
+.c-win-headbox-icon .fa{
+	padding-right : 0.2rem;
+}
+.c-win-title{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width: 100%;
+	height: 1.2rem;
+	font-size : 0.6rem;
+	line-height: 1.2rem;
+	padding-left :0.3rem;
+	z-index: 5;
+	color : #FFF;
+}
+
+.c-win-title-inner{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	cursor: default;
+}
+.c-win-movesable .c-win-title-inner{
+	cursor: move;
+}
+.c-win-tools{
+	position: absolute;
+	top : 0;
+	right: 0;
+	z-index: 10;
+	height: 1.2rem;
+	line-height: 0.8rem;
+	padding-right : 0.2rem;
+}
+
+.c-win-tools .c-btn{
+	display : inline-block;
+	border: none;
+	background-color: transparent;
+	color : rgba(255, 255, 255, 0.45);
+	margin-left : 0.1rem;
+	width: 1rem;
+	height: 0.8rem;
+}
+.c-win-tools .c-btn-nm{
+	padding : 0;
+	padding-left: 0.1rem;
+	padding-right : 0.1rem;
+}
+.c-win-tools .c-btn .fa{
+	padding : 0;
+	width: auto;
+}
+.c-win-tools .c-btn:hover{
+	color : #FFF;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.c-win-inner{
+	position: absolute;
+	top : 0;
+	left : 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	padding-top : 1.2rem;
+}
+.c-win-nohead .c-win-head{
+	display: none;
+}
+.c-win-nohead .c-win-inner{
+	padding-top: 0;
+}
+.c-win-innerbox,
+.c-win-wrap{
+	position : relative;
+	height: 100%;
+	width: 100%;
+}
+.c-win-ml{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width: 0.2rem;
+	height: 100%;
+	z-index: 5;
+	cursor: w-resize;
+}
+.c-win-mm{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+	padding-bottom: 0.2rem;
+}
+.c-win-mr{
+	position: absolute;
+	top : 0;
+	right : 0;
+	width: 0.2rem;
+	height: 100%;
+	z-index: 5;
+	cursor: e-resize;
+}
+.c-win-bl{
+	position: absolute;
+	z-index: 10;
+	bottom: 0;
+	left : 0;
+	cursor: sw-resize;
+	height: 0.2rem;
+	width: 0.2rem;
+}
+.c-win-bm{
+	position: absolute;
+	z-index: 7;
+	bottom: 0;
+	left : 0;
+	cursor: sw-resize;
+	height: 0.2rem;
+	width: 100%;
+	cursor: s-resize;
+}
+.c-win-br{
+	position: absolute;
+	z-index: 10;
+	bottom: 0;
+	right : 0;
+	cursor: se-resize;
+	height: 0.2rem;
+	width: 0.2rem;
+}
+.c-win-foot{
+	position: absolute;
+	z-index: 10;
+	bottom: 0;
+	left : 0;
+	width: 100%;
+	height: 1.8rem;
+}
+.c-win-foot-inner{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	text-align: right;
+	padding-left : 0.2rem;
+	padding-right : 0.4rem;
+	padding-top : 0.2rem;
+}
+.c-win-body{
+	position: absolute;
+	top : 0;
+	left : 0;
+	height: 100%;
+	width: 100%;
+	padding-bottom: 1.8rem;
+}
+.c-win-body-inner{
+	position: relative;
+	height : 100%;
+	width : 100%;
+	background-color: #FFF;
+	border-left: 1px solid #c4d4da;
+	border-right: 1px solid #c4d4da;
+	border-bottom: 1px solid #c4d4da;
+	border-bottom-left-radius : 0.15rem;
+	border-bottom-right-radius : 0.15rem;
+}
+.c-win-nohead .c-win-body-inner{
+	border-top: 1px solid #c4d4da;
+	border-top-left-radius : 0.15rem;
+	border-top-right-radius : 0.15rem;
+}
+.c-win-noresize .c-win-body-inner{
+	border: none;
+}
+
+.c-win-nofoot .c-win-body{
+	padding-bottom: 0;
+}
+.c-win-noresize .c-win-ml,
+.c-win-noresize .c-win-mr,
+.c-win-noresize .c-win-bl,
+.c-win-noresize .c-win-bm,
+.c-win-noresize .c-win-br{
+	display: none;
+}
+.c-win-noresize .c-win-mm{
+	padding: 0;
+}
+
+.c-win-mask,
+.c-win-actmask{
+	position: absolute;
+	top : 0;
+	left : 0;
+	width : 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0);
+}
+.c-win-mask{
+	background-color: rgba(0,0,0,0.1);
+}
+
+.c-win-foot .c-btn{
+	border-color: #297fb8;
+}
+
+.c-win-foot .c-btn:hover{
+	background-color : #8fcade;
+}
+
+.c-win-foot .c-btn[disabled]{
+	border-color : #879faf;
+	background-color: #dee3e5;
+}

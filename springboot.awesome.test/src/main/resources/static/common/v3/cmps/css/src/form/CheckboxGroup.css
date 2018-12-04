@@ -1,0 +1,70 @@
+@CHARSET "UTF-8";
+.c-checkboxgroup{
+	height: auto !important;
+}
+.c-checkboxgroup:before{
+	content: " ";
+	display: table;
+}
+.c-checkboxgroup:after{
+	content: " ";
+	display: table;
+	clear: both;
+}
+
+.c-checkboxgroup .c-fd-inwarp{
+	height: auto;
+}
+.c-checkboxgroup .c-fd-inwarp:before{
+	content: " ";
+	display: table;
+}
+.c-checkboxgroup .c-fd-inwarp:after{
+	content: " ";
+	display: table;
+	clear: both;
+}
+.c-checkboxgroup-allinputbox{
+	position:  relative;
+	width: 100%;
+	height: 1.4rem;
+	
+}
+.c-checkboxgroup-optionbox{
+	position:  relative;
+	width: 100%;
+	height: auto;
+	padding-top : 0.1rem;
+	padding-bottom: 0.1rem;
+	border: 1px solid #EEE;
+	border-radius : 2px;
+}
+.c-checkboxgroup-optionbox:before{
+	content: " ";
+	display: table;
+}
+.c-checkboxgroup-optionbox:after{
+	content: " ";
+	display: table;
+	clear: both;
+}
+.c-checkboxgroup-optionitem{
+	float: left;
+	position : relative;
+	width: 8rem;
+	height: 1.4rem;
+}
+.c-checkboxgroup .c-fd-inbox{
+	position: relative;
+}
+.c-fd-error .c-checkboxgroup-optionbox{
+	border-color : #f04b25; 
+	-webkit-box-shadow: inset 0 1px 1px rgba(255,255,255, 0.1), 0 0 0.4rem rgba(240, 75, 37, 0.6);
+	box-shadow: inset 0 1px 1px rgba(255,255,255, 0.1), 0 0 0.4rem rgba(240, 75, 37, 0.6);
+	background-image: url("data:image/gif;base64,R0lGODlhBAADAIcAAAD/AP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAAEAAMAAAgMAAMAGAhAoMCCAAICADs=");
+	background-position: left bottom;
+	background-repeat: repeat-x;
+}
+.c-checkboxgroup-optionitem .c-fd-error{
+	display: none;
+}

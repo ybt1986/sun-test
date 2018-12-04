@@ -1,0 +1,30 @@
+.cp-sbg-top {
+  padding-bottom: 0.5rem;
+}
+.cp-sbg-gird {
+  min-height: 12rem;
+}
+.cp-main-normal{
+  background-color: #0e6ede !important;
+  border-color: #4485c5 !important;
+}
+.cp-sbg-yellow {
+  color: #ee9331;
+  font-size: 0.9rem;
+}
+.cp-sbg-red {
+  color: #e94848;
+  font-size: 0.9rem;
+}
+.cp-warn i{
+  font-size:0.6rem;
+}
+.cp-sbg-yellow:before{
+  padding: 0 0.5rem;
+}
+.cp-sbg-red:before{
+  padding: 0 0.5rem;
+}
+.cp-warn i{
+  padding-right: 0.5rem;
+}

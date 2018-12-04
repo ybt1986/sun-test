@@ -1,0 +1,16 @@
+.cp-main .cp-btn-bar {
+    padding-left: 1rem;
+}
+.cp-main .cp-main-row{
+    margin-top: 0.5rem;
+}
+.cp-main-row > div{
+    vertical-align: top;
+}
+.region{
+    border:1px solid #CCCCCC;
+}
+.cp-main-normal{
+    background-color: #0e6ede !important;
+    border-color: #4485c5 !important;
+}

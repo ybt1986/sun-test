@@ -1,0 +1,11 @@
+.cp-main{
+  width: 100%;
+  height: 100%;
+  padding: 0 0.5rem;
+}
+.cp-main .cp-main-row {
+  padding: 0.5rem 0;
+}
+.cp-main .cp-btn-bar {
+  padding-left: 1rem;
+}

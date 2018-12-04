@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+.c-flow{
+	position: relative;
+	width: 100%;
+}
+
+.c-flow .c-flowitem{
+	display: inline-block;
+}

@@ -1,0 +1,59 @@
+@charset "utf-8";
+/*  LabelText  */
+.cp-checkbox .c-lb {
+    display: inline-block;
+    position: absolute;
+    font-size: 0.6rem;
+    text-align: right;
+    line-height: 1.4rem;
+    height: 1.4rem;
+    padding-right: 0.2rem;
+}
+.cp-checkbox .c-lb B::after {
+    content: ':';
+    clear: both;
+}
+/*  ChecKBox  */
+.c-checkbox-warp{
+    /*  未点击状态  */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+    height: 1.4rem;
+}
+.c-checkbox-warp .c-checkbox-text{
+    font-size: 0.6rem;
+    vertical-align: top;
+}
+.c-checkbox-warp .c-checkbox-icon{
+    padding-right: 0.1rem !important;
+}
+.c-checkbox-checked .c-checkbox-icon,
+.c-checkbox-half .c-checkbox-icon,
+.c-checkbox-warp:hover .c-checkbox-icon{
+    /*  点击状态  */
+    color: #40c4ff; /*  蓝色  */
+}
+/*  多选按钮被禁用状态  */
+.c-disabled .c-checkbox-warp,
+.c-disabled .c-checkbox-warp .c-checkbox-icon,
+.c-disabled .c-checkbox-warp:hover .c-checkbox-icon,
+.c-disabled .c-checkbox-warp .c-checkbox-text{
+    color: #7b7b7b;  /* 灰色 */
+    cursor:default;
+}
+
+.c-checkbox-half .check-half-inner{
+    font-size: 0.4rem;
+    position: absolute;
+    left: 0;
+    width: 0.62rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    color: #48a7e7;
+    text-align: center;
+}

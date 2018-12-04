@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+.lsc-checkboxGroup{
+    height: auto !important;
+}
+.lsc-checkboxGroup:before{
+    content: " ";
+    display: table;
+}
+.lsc-checkboxGroup:after{
+    content: " ";
+    display: table;
+    clear: both;
+}
+.lsc-checkboxGroup .c-lb{
+    display: inline-block;
+    position: absolute;
+    font-size: 0.6rem;
+    text-align: right;
+    line-height: 1.4rem;
+    height: 1.4rem;
+    padding-right: 0.2rem;
+}
+.lsc-checkboxGroup .c-lb .crude{
+    font-weight: bold;
+}
+.lsc-checkboxGroup .c-lb .crude::after {
+    content: ':';
+    clear: both;
+}
+.lsc-checkboxGroup .checkbox-warp{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 1.4rem;
+    min-height: 1.4rem;
+    height:auto;
+}
+.lsc-checkboxGroup .allInput-box{
+    display: inline-block;
+    vertical-align: top;
+}
+.lsc-checkboxGroup .checkbox-bar{
+    display: inline-block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 0.6rem;
+    line-height: 1.4rem;
+    height: auto;
+    width: 80%;
+}
+.lsc-checkboxGroup .lsc-checkbox{
+    display: inline-block;
+    padding-right: 0.5rem;
+    line-height: 1.4rem;
+    height: 1.4rem;
+    vertical-align: top;
+    padding-left: 0.5rem;
+}

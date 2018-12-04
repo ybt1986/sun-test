@@ -1,0 +1,86 @@
+@CHARSET "UTF-8";
+.exp-viewer{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #EEE;
+}
+.exp-viewer-left{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	top : 0;
+	left : 0;
+	padding-top : 0.3rem;
+	padding-bottom : 0.3rem;
+	padding-left : 0.3rem;
+}
+.exp-viewer-right{
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	top : 0;
+	right : 0;
+	padding : 0.3rem;
+}
+.exp-viewer-view{
+	position : relative;
+	width: 100%;
+	height: 100%;
+	border : 1px solid #CCC;
+}
+.exp-viewer-head{
+	position: absolute;
+	width : 100%;
+	height: 2rem;
+	background-color: #e4d7c6;
+	line-height: 2rem;
+	font-size : 0.8rem;
+	z-index: 20;
+}
+.exp-label{
+	padding-left: 1rem;
+}
+.exp-label .msg{
+	padding-left : 1rem;
+}
+.exp-excbtn{
+	position: absolute;
+	top : 0;
+	right : 0;
+	height: 100%;
+	width : 3rem; 
+	font-weight : bold;
+	color: #fcebe2;
+	background-color: #f37333;
+	text-align: center;
+	cursor: pointer;
+	transition : 0.25s ease;
+}
+.exp-excbtn:hover{
+	background-color: #cf4704;
+	color: #FFF;
+}
+.exp-viewer-view-body{
+	position: absolute;
+	top : 0;
+	left : 0;
+	z-index : 5;
+	width: 100%;
+	height: 100%;
+	padding-top : 2rem;
+}
+.exp-viewer-codeview{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.exp-viewer-demoview{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #FFF;
+	padding : 20px;
+	overflow: auto;
+}

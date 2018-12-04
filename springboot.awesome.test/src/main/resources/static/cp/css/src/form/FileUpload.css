@@ -1,0 +1,97 @@
+.cp-fileUpload-box {
+  position: relative;
+  width: 100%;
+  height: 1.4rem;
+}
+.cp-fileUpload-box > .cp-fileUpload-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.4rem;
+  text-align: right;
+  padding-right: 0.2rem;
+  font-size: 0.6rem;
+  line-height: 1.4rem;
+}
+.cp-fileUpload-box > .cp-fileUpload-label b {
+  display: inline-block;
+  width: 0.2rem;
+}
+.cp-fileUpload-box > .cp-fileUpload-label b:before {
+  content: ":";
+}
+.cp-fileUpload-box > .cp-fileUpload-val {
+  position: absolute;
+  top: 0;
+  left: 5rem;
+  height: 1.2rem;
+  text-align: right;
+  padding-right: 0.2rem;
+  font-size: 0.6rem;
+  line-height: 1.4rem;
+  width:9rem;
+  border-bottom: 1px solid #ccc;
+  text-align:left;
+  padding-left: 0.3rem;
+}
+.cp-fileUpload-box > .cp-fileUpload-btnbar {
+  width:100%;
+  padding-left:15rem;
+  position: absolute;
+}
+.cp-fileUpload-box > .cp-fileUpload-btnbar > * {
+  margin-right: 0.3rem;
+  vertical-align: middle;
+}
+
+.cp-fileUpload-form {
+  position: absolute;
+  left: 21rem;
+  z-index: 11;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  width: 4rem;
+}
+.cp-fileUpload-input{
+  width: 4rem;
+}
+.cp-fileUpload-uploadbtn,
+.cp-fileUpload-downloadbtn {
+  padding: 0 0.5rem;
+  background-color: #579ec8;
+  border-color : #579ec8;
+  color : #f6fff8;
+}
+.cp-fileUpload-uploadbtn {
+  width: 4rem;
+}
+.cp-fileUpload-uploadbtn:hover,
+.cp-fileUpload-downloadbtn:hover {
+  background-color: #3C96BE;
+  border-color: #3C96BE;
+  color : #FFF;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0, 0.1), 0 0 0.4rem rgba(60, 150, 190, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0, 0.1), 0 0 0.4rem rgba(60, 150, 190, 0.6);
+}
+
+.cp-fileUpload-error .cp-fileUpload-val {
+  background-image: url("data:image/gif;base64,R0lGODlhBAADAIcAAAD/AP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAAAALAAAAAAEAAMAAAgMAAMAGAhAoMCCAAICADs=");
+  background-position: left bottom;
+  background-repeat: repeat-x;
+}
+
+.cp-fileUpload-error-msg {
+  font-size: 0.6rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  padding-left: 0.5rem;
+  color: #fb3f01;
+  display: none;
+}
+
+.cp-fileUpload-error .cp-fileUpload-error-msg {
+  display: inline-block;
+}
+.cp-fileUpload-hideIframe {
+  display: none;
+}

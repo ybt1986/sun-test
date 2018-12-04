@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.c-daterange{
+}
+
+.c-daterange-start, .c-daterange-end{
+	display: inline-block;
+	float : left;
+	width: 9rem;
+}
+.c-daterange-text{
+	display: inline-block;
+	float : left;
+	line-height: 1.4rem;
+	font-size : 0.6rem;
+	padding-left: 0.8rem;
+	padding-right: 0.8rem;
+}
