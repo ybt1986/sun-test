@@ -5,7 +5,7 @@
 	<groupId>com.sample</groupId>
 	<artifactId>springboot.py4j.test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot.tomcat.test</name>
+	<name>springboot.py4j.test</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>springboot.tomcat.test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>demo</name>
+	<name>springboot.tomcat.test</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -82,13 +82,13 @@
 					<warName>myweb</warName>
 					<archive>
 						<manifest>
-							<mainClass>${start-class}</mainClass>
+							<!--<mainClass>${start-class}</mainClass>-->
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 						</manifest>
 					</archive>
-					<skipTests>true</skipTests>
-					<skip>true</skip><!-- 跳过测试 -->
-					<testFailureIgnore>true</testFailureIgnore>
+					<!--<skipTests>true</skipTests>
+					<skip>true</skip>&lt;!&ndash; 跳过测试 &ndash;&gt;
+					<testFailureIgnore>true</testFailureIgnore>-->
 					<!-- 将war包直接输出到tomcat下webapps目录下 -->
 					<outputDirectory>${outputDirectory}</outputDirectory>
 				</configuration>
